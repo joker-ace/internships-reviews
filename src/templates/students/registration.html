@@ -1,3 +1,23 @@
 {% extends 'base.html' %}
 
 {% block title %}Registration{% endblock %}
+
+{% block content %}
+    <div>
+        <form class="form-registration" action="" method="post">
+            {% csrf_token %}
+            <h2>Create your account</h2>
+            <label for="email" class="sr-only">Email address</label>
+            <input type="email" value="{{ form.email.value|default_if_none:'' }}" name="email" id="email" class="form-control floated-top-input" placeholder="Email address" required autofocus autocomplete="off" />
+            <label for="first_name" class="sr-only">First Name</label>
+            <input type="text" value="{{ form.first_name.value|default_if_none:'' }}" name="first_name" id="first_name" class="form-control floated-middle-input" placeholder="First name" required autocomplete="off" />
+            <label for="last_name" class="sr-only">Last Name</label>
+            <input type="text" value="{{ form.last_name.value|default_if_none:'' }}" name="last_name" id="last_name" class="form-control floated-middle-input" placeholder="Last name" required autocomplete="off" />
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" value="{{ form.password.value|default_if_none:'' }}" name="password" id="password" class="form-control floated-middle-input" placeholder="Password" required autocomplete="off" />
+            <label for="repeat_password" class="sr-only">Repeat password</label>
+            <input type="password" value="{{ form.repeat_password.value|default_if_none:'' }}" name="repeat_password" id="repeat_password" class="form-control floated-bottom-input" placeholder="Repeat password" required autocomplete="off" />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        </form>
+    </div>
+{% endblock %}
