@@ -2,6 +2,7 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 SECRET_KEY = 's15oga2-u+54n@0(+anj5cl-7g6+&iry$76x=o_bf5wt$5zuu*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -38,7 +39,7 @@ ROOT_URLCONF = 'urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(PROJECT_ROOT, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

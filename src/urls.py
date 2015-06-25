@@ -2,7 +2,8 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 
+
 urlpatterns = [
-    # url(r'^$', 'reviews.views.home', name='home'),
+    url(r'^students/', include('students.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
