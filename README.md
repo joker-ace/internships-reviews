@@ -1,2 +1,2 @@
-# internships-reviews
+# Internships reviews website
 Upwork job
