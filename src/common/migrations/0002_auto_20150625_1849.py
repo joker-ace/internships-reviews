@@ -28,6 +28,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='company',
             name='province',
-            field=models.ForeignKey(to='common.Province'),
+            field=models.ForeignKey(to='common.models.province'),
         ),
     ]

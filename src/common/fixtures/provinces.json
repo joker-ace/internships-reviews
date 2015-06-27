@@ -1,0 +1,66 @@
+[
+  {
+    "model": "common.province",
+    "pk": "1",
+    "fields": {
+      "name": "Sevilla",
+      "autonomous_community": "Andalusia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "2",
+    "fields": {
+      "name": "Málaga",
+      "autonomous_community": "Andalusia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "3",
+    "fields": {
+      "name": "Cádiz",
+      "autonomous_community": "Andalusia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "4",
+    "fields": {
+      "name": "Granada",
+      "autonomous_community": "Andalusia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "5",
+    "fields": {
+      "name": "Córdoba",
+      "autonomous_community": "Andalusia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "6",
+    "fields": {
+      "name": "Almería",
+      "autonomous_community": "Andalusia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "7",
+    "fields": {
+      "name": "Jaén",
+      "autonomous_community": "Andalusia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "8",
+    "fields": {
+      "name": "Huelva",
+      "autonomous_community": "Andalusia"
+    }
+  }
+]
