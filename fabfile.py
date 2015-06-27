@@ -89,8 +89,8 @@ def create_application_folders_structure():
         run('mkdir -p logs')
         run('mkdir -p run')
         run('mkdir -p media_content')
-        run('touch logs/gunicorn_supervisor.log;')
-        run('chmod u+x bin/gunicorn_start.sh;')
+        run('touch logs/gunicorn_supervisor.log')
+        run('chmod u+x bin/gunicorn_start.sh')
 
 
 def create_application_database():
@@ -165,12 +165,13 @@ def restart_nginx():
 
 def get_last_application_version():
     with cd(project_folder):
+        run('git checkout -- .')
         run('git pull origin master')
-        change_application_files_owner()
 
 
 def update():
     get_last_application_version()
+    create_application_folders_structure()
     change_application_files_owner()
     restart_supervisor()
     restart_nginx()
