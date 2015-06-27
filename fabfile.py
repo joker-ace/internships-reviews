@@ -169,6 +169,11 @@ def get_last_application_version():
         run('git pull origin master')
 
 
+def load_application_initial_data():
+    with cd(project_folder):
+        run('env/bin/python2.7 src/manage.py loaddata --ignorenonexistent provinces.json')
+
+
 def update():
     get_last_application_version()
     create_application_folders_structure()
@@ -186,6 +191,7 @@ def clear_install():
     create_application_environment()
     install_application_packages()
     process_application_migrations()
+    load_application_initial_data()
     process_application_static_files()
     create_application_superuser()
     change_application_files_owner()
