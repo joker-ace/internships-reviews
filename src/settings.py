@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
 import os
+from ConfigParser import ConfigParser
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOURCES_ROOT = os.path.abspath(os.path.dirname(__file__))
 SECRET_KEY = 's15oga2-u+54n@0(+anj5cl-7g6+&iry$76x=o_bf5wt$5zuu*'
+
+CONFIG_FILE = os.path.join(SOURCES_ROOT, 'config.ini')
+
+config = ConfigParser()
+config.read(CONFIG_FILE)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -58,8 +64,12 @@ WSGI_APPLICATION = 'wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.{}'.format(config.get('database', 'engine')),
+        'NAME': config.get('database', 'name'),
+        'USER': config.get('database', 'user'),
+        'PASSWORD': config.get('database', 'password'),
+        'HOST': config.get('database', 'host'),
+        'PORT': ''
     }
 }
 
@@ -79,4 +89,7 @@ STATICFILES_DIRS = (
     os.path.join(SOURCES_ROOT, "static"),
 )
 
-STATIC_ROOT = os.path.join(SOURCES_ROOT, 'static_content')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_content')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_content')

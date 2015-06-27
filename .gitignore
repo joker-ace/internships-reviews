@@ -55,7 +55,9 @@ docs/_build/
 
 # PyBuilder
 target/
+logs
 *.sqlite3
 .*
 !.gitignore
 static_content
+deployment.ini
