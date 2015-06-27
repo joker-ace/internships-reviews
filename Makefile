@@ -1,5 +1,5 @@
-.PHONY: create-core-environment create-python-environment install-python-packages
-.SILENT: create-core-environment create-python-environment install-python-packages
+.PHONY: create-core-environment create-python-environment install-python-packages create_project_dirs_and_files
+.SILENT: create-core-environment create-python-environment install-python-packages create_project_dirs_and_files
 
 VERSION=2.7
 ENV=env
@@ -10,7 +10,15 @@ install-postgresql:
 	apt-get install postgresql;
 	apt-get install postgresql-contrib;
 
-create-core-environment: create-python-environment install-python-packages
+create-core-environment: create-python-environment create_project_dirs_and_files install-python-packages
+
+create_project_dirs_and_files:
+	mkdir -p logs;
+	mkdir -p run;
+	mkdir -p media_content;
+	touch logs/gunicorn_supervisor.log;
+	chmod u+x bin/gunicorn_start.sh;
+
 
 create-python-environment:
 	if [ -d $(ENV) ]; then  \
