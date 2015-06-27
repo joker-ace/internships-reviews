@@ -135,6 +135,18 @@ def install_supervisor_config():
         run('supervisorctl restart all')
 
 
+def install_nginx_config():
+    with cd(project_folder):
+        run('cp config/nginx/internships.conf /etc/nginx/sites-available/internships.conf')
+        run('ln -s /etc/nginx/sites-available/internships.conf /etc/nginx/sites-enabled/internships.conf')
+        run('service nginx restart')
+
+def get_last_project_version():
+    with cd(project_folder):
+        run('git pull origin master')
+        change_project_files_owner()
+
+
 def clean_deploy():
     install_system_packages()
     create_project_database()
