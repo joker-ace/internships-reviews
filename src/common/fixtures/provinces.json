@@ -62,5 +62,357 @@
       "name": "Huelva",
       "autonomous_community": "Andalusia"
     }
+  },
+  {
+    "model": "common.province",
+    "pk": "9",
+    "fields": {
+      "name": "Zaragoza",
+      "autonomous_community": "Aragon"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "10",
+    "fields": {
+      "name": "Huesca",
+      "autonomous_community": "Aragon"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "11",
+    "fields": {
+      "name": "Teruel",
+      "autonomous_community": "Aragon"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "12",
+    "fields": {
+      "name": "Asturias",
+      "autonomous_community": "Asturias"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "13",
+    "fields": {
+      "name": "Balearic Islands",
+      "autonomous_community": "Balearic Islands"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "14",
+    "fields": {
+      "name": "Biscay",
+      "autonomous_community": "Basque Community"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "15",
+    "fields": {
+      "name": "Gipuzkoa",
+      "autonomous_community": "Basque Community"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "16",
+    "fields": {
+      "name": "Álava",
+      "autonomous_community": "Basque Community"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "17",
+    "fields": {
+      "name": "Las Palmas",
+      "autonomous_community": "Canary Islands"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "18",
+    "fields": {
+      "name": "Santa Cruz de Tenerife",
+      "autonomous_community": "Canary Islands"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "19",
+    "fields": {
+      "name": "Cantabria",
+      "autonomous_community": "Cantabria"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "20",
+    "fields": {
+      "name": "Valladolid",
+      "autonomous_community": "Castile and León"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "21",
+    "fields": {
+      "name": "León",
+      "autonomous_community": "Castile and León"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "22",
+    "fields": {
+      "name": "Burgos",
+      "autonomous_community": "Castile and León"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "23",
+    "fields": {
+      "name": "Salamanca",
+      "autonomous_community": "Castile and León"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "24",
+    "fields": {
+      "name": "Zamora",
+      "autonomous_community": "Castile and León"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "25",
+    "fields": {
+      "name": "Palencia",
+      "autonomous_community": "Castile and León"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "26",
+    "fields": {
+      "name": "Ávila",
+      "autonomous_community": "Castile and León"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "27",
+    "fields": {
+      "name": "Segovia",
+      "autonomous_community": "Castile and León"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "28",
+    "fields": {
+      "name": "Soria",
+      "autonomous_community": "Castile and León"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "29",
+    "fields": {
+      "name": "Toledo",
+      "autonomous_community": "Castile–La Mancha"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "30",
+    "fields": {
+      "name": "Ciudad Real",
+      "autonomous_community": "Castile–La Mancha"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "31",
+    "fields": {
+      "name": "Albacete",
+      "autonomous_community": "Castile–La Mancha"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "32",
+    "fields": {
+      "name": "Guadalajara",
+      "autonomous_community": "Castile–La Mancha"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "33",
+    "fields": {
+      "name": "Cuenca",
+      "autonomous_community": "Castile–La Mancha"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "34",
+    "fields": {
+      "name": "Barcelona",
+      "autonomous_community": "Catalonia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "35",
+    "fields": {
+      "name": "Tarragona",
+      "autonomous_community": "Catalonia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "36",
+    "fields": {
+      "name": "Girona",
+      "autonomous_community": "Catalonia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "37",
+    "fields": {
+      "name": "Lleida",
+      "autonomous_community": "Catalonia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "38",
+    "fields": {
+      "name": "Badajoz",
+      "autonomous_community": "Extremadura"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "39",
+    "fields": {
+      "name": "Cáceres",
+      "autonomous_community": "Extremadura"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "40",
+    "fields": {
+      "name": "La Coruña",
+      "autonomous_community": "Galicia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "41",
+    "fields": {
+      "name": "Pontevedra",
+      "autonomous_community": "Galicia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "42",
+    "fields": {
+      "name": "Lugo",
+      "autonomous_community": "Galicia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "43",
+    "fields": {
+      "name": "Ourense",
+      "autonomous_community": "Galicia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "44",
+    "fields": {
+      "name": "La Rioja",
+      "autonomous_community": "La Rioja"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "45",
+    "fields": {
+      "name": "Madrid",
+      "autonomous_community": "Madrid"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "46",
+    "fields": {
+      "name": "Murcia",
+      "autonomous_community": "Murcia"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "47",
+    "fields": {
+      "name": "Navarre",
+      "autonomous_community": "Navarre"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "48",
+    "fields": {
+      "name": "Ceuta",
+      "autonomous_community": "Plazas de soberanía"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "49",
+    "fields": {
+      "name": "Melilla",
+      "autonomous_community": "Plazas de soberanía"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "50",
+    "fields": {
+      "name": "Valencia",
+      "autonomous_community": "Valencian Community"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "51",
+    "fields": {
+      "name": "Alicante",
+      "autonomous_community": "Valencian Community"
+    }
+  },
+  {
+    "model": "common.province",
+    "pk": "52",
+    "fields": {
+      "name": "Castellón",
+      "autonomous_community": "Valencian Community"
+    }
   }
 ]
