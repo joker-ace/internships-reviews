@@ -32,3 +32,6 @@ class UserRegistrationForm(forms.ModelForm):
 
         if password != password_confirmation:
             raise forms.ValidationError("Your passwords do not match")
+
+    def get(self, field_name):
+        return self.cleaned_data.get(field_name, '')
