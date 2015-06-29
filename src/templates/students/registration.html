@@ -3,36 +3,51 @@
 {% block title %}Registration{% endblock %}
 
 {% block content %}
-    <div>
-        <form class="form-horizontal form-registration" action="" method="post">
-            {% csrf_token %}
-            <h2>Create your account</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                <form action="" method="post" role="form">
+                    {% csrf_token %}
+                    <h3 class="text-center">CREATE YOUR ACCOUNT</h3>
 
-            <div class="control-group error">
-                <label for="email" class="sr-only">Email address</label>
-
-                <div class="controls">
-                    <input type="email" value="{{ form.email.value|default_if_none:'' }}" name="email" id="email"
-                           class="form-control floated-top-input" placeholder="Email address" required autofocus
-                           autocomplete="off" maxlength="50"/></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group {% if form.first_name.errors %}has-error{% endif %}">
+                                <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1"
+                                       value="{{ form.first_name.value|default_if_none:'' }}">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group {% if form.last_name.errors %}has-error{% endif %}">
+                                <input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2"
+                                       value="{{ form.last_name.value|default_if_none:'' }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+                        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="3"
+                               value="{{ form.email.value|default_if_none:'' }}">
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                                <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="4"
+                                       value="{{ form.password.value|default_if_none:'' }}">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group {% if form.password_confirmation.errors %}has-error{% endif %}">
+                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="5"
+                                       value="{{ form.password_confirmation.value|default_if_none:'' }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="6"></div>
+                        <div class="col-xs-12 col-md-6"><a href="#" class="btn btn-success btn-block btn-lg">Sign In</a></div>
+                    </div>
+                </form>
             </div>
-            <label for="first_name" class="sr-only">First Name</label>
-            <input type="text" value="{{ form.first_name.value|default_if_none:'' }}" name="first_name" id="first_name"
-                   class="form-control floated-middle-input" placeholder="First name" required autocomplete="off"
-                   maxlength="50"/>
-            <label for="last_name" class="sr-only">Last Name</label>
-            <input type="text" value="{{ form.last_name.value|default_if_none:'' }}" name="last_name" id="last_name"
-                   class="form-control floated-middle-input" placeholder="Last name" required autocomplete="off"
-                   maxlength="50"/>
-            <label for="password" class="sr-only">Password</label>
-            <input type="password" value="{{ form.password.value|default_if_none:'' }}" name="password" id="password"
-                   class="form-control floated-middle-input" placeholder="Password" required autocomplete="off"
-                   maxlength="50"/>
-            <label for="repeat_password" class="sr-only">Repeat password</label>
-            <input type="password" value="{{ form.repeat_password.value|default_if_none:'' }}" name="repeat_password"
-                   id="repeat_password" class="form-control floated-bottom-input" placeholder="Repeat password" required
-                   autocomplete="off" maxlength="50"/>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-        </form>
+        </div>
     </div>
 {% endblock %}
