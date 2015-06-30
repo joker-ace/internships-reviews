@@ -10,11 +10,5 @@ class LoginForm(forms.Form):
     )
     password = forms.CharField(required=True)
 
-    def set_email_not_exists_error(self):
-        self.add_error('email', 'Email not found in the system.')
-
-    def set_invalid_password_error(self):
-        self.add_error('password', 'Invalid password.')
-
     def get(self, field_name):
         return self.cleaned_data.get(field_name, '')

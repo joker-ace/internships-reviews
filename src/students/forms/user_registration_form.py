@@ -35,6 +35,3 @@ class UserRegistrationForm(forms.ModelForm):
 
     def get(self, field_name):
         return self.cleaned_data.get(field_name, '')
-
-    def set_email_exists_error(self):
-        self.add_error('email', 'This is email is already used by another user.')

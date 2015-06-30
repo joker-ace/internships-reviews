@@ -8,11 +8,15 @@ class CommonBaseView(View):
     template_name = None
     context = {}
 
-    def add_form_error(self, field, error_message=''):
-        if self.form:
-            self.form.add_error(field, error_message)
+    def update_context(self, context=None):
+        if not context or not isinstance(context, dict):
+            raise Exception('Invalid parameter for CommonBaseView.update_context method')
+        self.context.update(context)
 
+    def response(self):
+        return render(self.request, self.template_name, self.context)
 
-    def response(self, request):
-        # TODO: complete common view
-        pass
+    def redirect_to(self, view_name=None):
+        if not view_name or not isinstance(view_name, (str, unicode)):
+            raise Exception('Invalid parameter for CommonBaseView.redirect_to method')
+        return redirect(to=view_name)
