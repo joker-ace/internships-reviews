@@ -3,56 +3,61 @@
 {% block title %}Registration{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-                <form action="" method="post" role="form">
-                    {% csrf_token %}
-                    <h3 class="text-center">CREATE YOUR ACCOUNT</h3>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <form action="" method="post" role="form">
+        {% csrf_token %}
+        <h3 class="text-center">CREATE YOUR ACCOUNT</h3>
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group {% if form.first_name.errors %}has-error{% endif %}">
-                                <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name" tabindex="1"
-                                       value="{{ form.first_name.value|default_if_none:'' }}">
-                                <span class="text-danger">{{ form.first_name.errors.0 }}</span>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group {% if form.last_name.errors %}has-error{% endif %}">
-                                <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name" tabindex="2"
-                                       value="{{ form.last_name.value|default_if_none:'' }}">
-                                <span class="text-danger">{{ form.last_name.errors.0 }}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group {% if form.email.errors %}has-error{% endif %}">
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" tabindex="3"
-                               value="{{ form.email.value|default_if_none:'' }}">
-                        <span class="text-danger">{{ form.email.errors.0 }}</span>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group {% if form.password.errors %}has-error{% endif %}">
-                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" tabindex="4"
-                                       value="{{ form.password.value|default_if_none:'' }}">
-                                <span class="text-danger">{{ form.password.errors.0 }}</span>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group {% if form.password_confirmation.errors %}has-error{% endif %}">
-                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirm Password" tabindex="5"
-                                       value="{{ form.password_confirmation.value|default_if_none:'' }}">
-                                <span class="text-danger">{{ form.password_confirmation.errors.0 }}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block" tabindex="6"></div>
-                        <div class="col-xs-12 col-md-6"><a href="{% url 'login_page' %}" class="btn btn-success btn-block">Sign In</a></div>
-                    </div>
-                </form>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group {% if form.first_name.errors %}has-error{% endif %}">
+              <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name"
+                     tabindex="1"
+                     value="{{ form.first_name.value|default_if_none:'' }}">
+              <span class="text-danger">{{ form.first_name.errors.0 }}</span>
             </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group {% if form.last_name.errors %}has-error{% endif %}">
+              <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name"
+                     tabindex="2"
+                     value="{{ form.last_name.value|default_if_none:'' }}">
+              <span class="text-danger">{{ form.last_name.errors.0 }}</span>
+            </div>
+          </div>
         </div>
+        <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+          <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" tabindex="3"
+                 value="{{ form.email.value|default_if_none:'' }}">
+          <span class="text-danger">{{ form.email.errors.0 }}</span>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+              <input type="password" name="password" id="password" class="form-control" placeholder="Password"
+                     tabindex="4"
+                     value="{{ form.password.value|default_if_none:'' }}">
+              <span class="text-danger">{{ form.password.errors.0 }}</span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group {% if form.password_confirmation.errors %}has-error{% endif %}">
+              <input type="password" name="password_confirmation" id="password_confirmation" class="form-control"
+                     placeholder="Confirm Password" tabindex="5"
+                     value="{{ form.password_confirmation.value|default_if_none:'' }}">
+              <span class="text-danger">{{ form.password_confirmation.errors.0 }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block"
+                                                 tabindex="6"></div>
+          <div class="col-xs-12 col-md-6"><a href="{% url 'login_page' %}" class="btn btn-success btn-block">Sign In</a>
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
+
 {% endblock %}

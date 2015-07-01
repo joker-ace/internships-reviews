@@ -8,4 +8,12 @@ class Faculty(models.Model):
     university = models.ForeignKey(University)
 
     def __unicode__(self):
-        return self.name
+        return self.name + ', ' + self.university.name
+
+    def __str__(self):
+        return unicode(self)
+
+    class Meta:
+        verbose_name = 'Faculty'
+        verbose_name_plural = 'Faculties'
+        ordering = ["university", "name"]

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Your university{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <form class="form-horizontal">
+        <fieldset>
+          <legend>My University</legend>
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+              <label for="university" class="control-label">University</label>
+              <select class="form-control" id="university">
+                <option value="">--- Select University ---</option>
+                {% for university in universities %}
+                  <option value="{{ university.pk }}">{{ university.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="faculty" class="control-label">Faculty</label>
+              <select class="form-control" id="faculty">
+                <option value="">--- Select Faculty ---</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+{% endblock %}

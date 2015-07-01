@@ -4,8 +4,14 @@ from common.models.province import Province
 
 class University(models.Model):
     name = models.CharField(max_length=255)
-    seat_of_rectorate = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
     province = models.ForeignKey(Province, default=None)
+
+    class Meta:
+        ordering = ['name']
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = 'Universities'
