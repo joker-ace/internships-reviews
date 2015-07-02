@@ -95,11 +95,14 @@ def create_application_folders_structure():
 
 def create_application_database():
     sudo(
-        'createuser --interactive -P',
+        'createdb --owner {} {}'.format(config.get('database', 'user'), config.get('database', 'name')),
         user='postgres'
     )
+
+
+def create_application_database_user():
     sudo(
-        'createdb --owner {} {}'.format(config.get('database', 'user'), config.get('database', 'name')),
+        'createuser --interactive -P',
         user='postgres'
     )
 
@@ -133,7 +136,7 @@ def process_application_migrations():
 
 def process_application_static_files():
     with cd(project_folder):
-        run('env/bin/python2.7 src/manage.py collectstatic')
+        run('env/bin/python2.7 src/manage.py collectstatic --noinput')
 
 
 def create_application_superuser():
@@ -178,12 +181,15 @@ def update():
     get_last_application_version()
     create_application_folders_structure()
     change_application_files_owner()
+    process_application_migrations()
+    process_application_static_files()
     restart_supervisor()
     restart_nginx()
 
 
 def clear_install():
     install_system_packages()
+    create_application_database_user()
     create_application_database()
     create_system_user_for_application()
     create_application_folders_structure()
