@@ -2,55 +2,55 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head lang="en">
-    <meta charset="UTF-8"/>
-    <title>Internships Reviews - {% block title %}{% endblock %}</title>
-    {% block css %}
-        <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet"/>
-        <link href="{% static 'css/common.css' %}" type="text/css" rel="stylesheet"/>
-    {% endblock %}
-    {% block js %}
-        <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'js/common.js' %}"></script>
-    {% endblock %}
+  <meta charset="UTF-8"/>
+  <title>Internships Reviews - {% block title %}{% endblock %}</title>
+  {% block css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet"/>
+    <link href="{% static 'css/common.css' %}" type="text/css" rel="stylesheet"/>
+  {% endblock %}
+  {% block js %}
+    <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+  {% endblock %}
 
 </head>
 <body>
-<header class="container">
+<div class="container">
+  <header class="container">
     {% block header %}
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#bs-example-navbar-collapse-2">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Internships Reviews</a>
-                </div>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-2">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">Internships Reviews</a>
+          </div>
 
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                    <ul class="nav navbar-nav">
-
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="{% url 'my_university_page' %}">{{ request.user.first_name }} {{ request.user.last_name }}</a>
-                        </li>
-                        <li><a href="{% url 'logout_page' %}">Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav"></ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="{% url 'my_university_page' %}">{{ request.user.first_name }} {{ request.user.last_name }}</a>
+              </li>
+              <li><a href="{% url 'logout_page' %}">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     {% endblock %}
-</header>
-<main class="container">
+  </header>
+  <main class="container">
     {% block content %}{% endblock %}
-</main>
-<footer class="container">
-    {% block footer %}{% endblock %}
-</footer>
+  </main>
+  <footer class="container">
+      <div class="text-center">Copyright 2015</div>
+  </footer>
+</div>
 </body>
 </html>
