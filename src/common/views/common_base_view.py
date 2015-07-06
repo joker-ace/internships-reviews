@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.views.generic import View
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 
 
 class CommonBaseView(View):
@@ -12,6 +13,10 @@ class CommonBaseView(View):
         if not context or not isinstance(context, dict):
             raise Exception('Invalid parameter for CommonBaseView.update_context method')
         self.context.update(context)
+
+    def json_response(self, data=None):
+        data = {'result': data}
+        return JsonResponse(data)
 
     def response(self):
         return render(self.request, self.template_name, self.context)
