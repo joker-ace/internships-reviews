@@ -3,44 +3,78 @@
 
 {% block title %}Your university{% endblock %}
 {% block js %}
-  {{ block.super }}
-  {% js 'select2.min.js' %}
+    {{ block.super }}
+    {% js 'select2.min.js' %}
 {% endblock %}
 
 {% block css %}
-  {{ block.super }}
-  {% css 'select2.min.css' %}
-  {% css 'select2-bootstrap.min.css' %}
+    {{ block.super }}
+    {% css 'select2.min.css' %}
+    {% css 'select2-bootstrap.min.css' %}
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-      <form class="form-horizontal">
-        {% csrf_token %}
-        <fieldset>
-          <legend>My University</legend>
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-              <label for="university" class="control-label">University</label>
-              <input type="hidden" id="university_faculties_url" value="{% url 'university_faculties_url' %}"/>
-              <select class="form-control" id="university" name="university">
-                {% for university in universities %}
-                  <option></option>
-                  <option value="{{ university.pk }}">{{ university.name }}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="faculty" class="control-label">Faculty</label>
-              <select class="form-control" id="faculty" name="faculty"></select>
-            </div>
-          </div>
-        </fieldset>
-      </form>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form class="form-horizontal" id="my-university-form" action="" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>My University</legend>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label for="university" class="control-label">University</label>
+                            <input type="hidden" id="university_faculties_url" value="{% url 'university_faculties_url' %}"/>
+                            <select class="form-control" id="university" name="university">
+                                {% for university in universities %}
+                                    <option></option>
+                                    <option value="{{ university.pk }}">{{ university.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12" id="row-faculty">
+                        <div class="form-group">
+                            <label for="faculty" class="control-label">Faculty</label>
+                            <select class="form-control" id="faculty" name="faculty">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <label for="start_date" class="control-label">Education start date:</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                <div class="form-group">
+
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> I'm studying
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-block btn-primary" id="btn-save-university" disabled>Save</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
-  </div>
 {% endblock %}
 {% block on_load_js %}
-  {% js 'students/universities.js' %}
+    {% js 'students/universities.js' %}
 {% endblock %}

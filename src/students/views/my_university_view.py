@@ -16,3 +16,7 @@ class MyUniversityView(CommonBaseView):
             'universities': University.objects.all()
         })
         return self.response()
+
+    @method_decorator(login_required)
+    def post(self, request):
+        pass

@@ -1,4 +1,29 @@
-var s2faculties = false;
+var s2faculties = null;
+
+function onFacultiesDataReceived(data) {
+    if (data.result) {
+        var faculties = [];
+        data.result.forEach(function (faculty) {
+            faculties.push({
+                id: faculty.id,
+                text: faculty.name
+            });
+        });
+
+        if (s2faculties) {
+            s2faculties.select2("destroy").find('option').remove();
+            s2faculties.append($('<option>'));
+        }
+        $("#row-faculty").show('slow', function () {
+            s2faculties = $("#faculty").select2({
+                placeholder: "Select your faculty",
+                theme: "bootstrap",
+                tags: true,
+                data: faculties
+            });
+        });
+    }
+}
 $(document).ready(function () {
 
     var s2universities = $("#university").select2({
@@ -13,29 +38,7 @@ $(document).ready(function () {
         $.post(
             url,
             data,
-            function (data) {
-                if (data.result) {
-                    var faculties = [];
-                    data.result.forEach(function (faculty) {
-                        faculties.push({
-                            id: faculty.id,
-                            text: faculty.name
-                        });
-                    });
-                    if (s2faculties) {
-                        $("#faculty").select2("destroy");
-                        s2faculties = false;
-                    }
-
-                    $("#faculty").select2({
-                        placeholder: "Select your faculty",
-                        theme: "bootstrap",
-                        tags: true,
-                        data: faculties
-                    });
-                    s2faculties = true;
-                }
-            },
+            onFacultiesDataReceived,
             "json"
         );
     });
