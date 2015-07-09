@@ -41,7 +41,7 @@ class LoginView(CommonBaseView):
 
         login(request, user)
 
-        return self.redirect_to('my_university_page')
+        return self.redirect_to('student_university_page')
 
     def user_exists(self, email):
         return User.objects.filter(username=email).exists()

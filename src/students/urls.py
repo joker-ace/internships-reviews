@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'registration/$', RegistrationView.as_view(), name='registration_page'),
     url(r'login/$', LoginView.as_view(), name='login_page'),
     url(r'logout/$', LogoutView.as_view(), name='logout_page'),
-    url(r'my/university/$', MyUniversityView.as_view(), name='my_university_page')
+    url(r'university/$', MyUniversityView.as_view(), name='student_university_page')
 ]
