@@ -21,6 +21,9 @@ function onFacultiesDataReceived(data) {
                 tags: true,
                 data: faculties
             });
+            s2faculties.on('change', function() {
+                $("#btn-save-university").removeAttr("disabled");
+            })
         });
     }
 }
