@@ -35,9 +35,6 @@
                         <ul class="nav navbar-nav"></ul>
                         {% if request.user.is_authenticated %}
                             <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="{% url 'my_university_page' %}">{{ request.user.first_name }} {{ request.user.last_name }}</a>
-                                </li>
                                 <li><a href="{% url 'logout_page' %}">Logout</a></li>
                             </ul>
                         {% endif %}
