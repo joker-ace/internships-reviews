@@ -5,7 +5,7 @@ from django.http import JsonResponse
 
 
 class CommonBaseView(View):
-    form = None
+    form_class = None
     template_name = None
     context = {}
 

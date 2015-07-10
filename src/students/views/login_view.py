@@ -9,16 +9,16 @@ from common.global_variables import EMAIL_NOT_EXISTS_ERROR_MESSAGE, INVALID_PASS
 
 class LoginView(CommonBaseView):
     template_name = 'students/login.html'
-    form = LoginForm
+    form_class = LoginForm
 
     def get(self, request):
         if request.user.is_authenticated():
             return self.redirect_to('companies_list_page')
-        self.update_context({'form': self.form()})
+        self.update_context({'form': self.form_class()})
         return self.response()
 
     def post(self, request):
-        form = self.form(request.POST)
+        form = self.form_class(request.POST)
         if not form.is_valid():
             self.update_context({'form': form})
             return self.response()

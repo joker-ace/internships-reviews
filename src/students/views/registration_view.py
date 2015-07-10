@@ -10,16 +10,16 @@ from common.global_variables import EMAIL_EXISTS_ERROR_MESSAGE, USER_REGISTERED_
 
 class RegistrationView(CommonBaseView):
     template_name = 'students/registration.html'
-    form = UserRegistrationForm
+    form_class = UserRegistrationForm
 
     def get(self, request):
         if request.user.is_authenticated():
             return self.redirect_to('companies_list_page')
-        context = {'form': self.form()}
+        context = {'form': self.form_class()}
         return render(request, self.template_name, context)
 
     def post(self, request):
-        form = self.form(request.POST)
+        form = self.form_class(request.POST)
         if not form.is_valid():
             self.update_context({'form': form})
             return self.response()

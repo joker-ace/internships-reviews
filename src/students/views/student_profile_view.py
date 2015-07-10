@@ -6,10 +6,11 @@ from common.views.common_base_view import CommonBaseView
 from common.models.university import University
 from common.models.faculty import Faculty
 from students.models.student import Student
-
+from students.forms.student_profile_form import StudentProfileForm
 
 class StudentProfileView(CommonBaseView):
     template_name = 'students/profile.html'
+    form_class = StudentProfileForm
 
     @method_decorator(login_required)
     def get(self, request):
