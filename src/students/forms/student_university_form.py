@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
 from django import forms
 
-from students.models.student import Student
 
-
-class StudentUniversityForm(forms.ModelForm):
-    class Meta:
-        model = Student
-        fields = ['university', 'faculty', 'is_studying']
+class StudentUniversityForm(forms.Form):
+    university = forms.IntegerField(required=True)
+    faculty = forms.CharField(max_length=100, required=True)
+    is_studying = forms.BooleanField()

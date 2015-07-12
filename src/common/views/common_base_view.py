@@ -3,11 +3,17 @@ from django.views.generic import View
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
+from utils.data_repositories_factory import DataRepositoriesFactory
+
 
 class CommonBaseView(View):
-    form = None
+    form_class = None
     template_name = None
     context = {}
+
+    @property
+    def data(self):
+        return DataRepositoriesFactory()
 
     def update_context(self, context=None):
         if not context or not isinstance(context, dict):

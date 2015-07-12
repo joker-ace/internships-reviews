@@ -5,16 +5,20 @@ from common.models.university import University
 
 
 class Faculty(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     university = models.ForeignKey(University)
+
+    class Meta:
+        verbose_name = 'Faculty'
+        verbose_name_plural = 'Faculties'
+        ordering = ["university", "name"]
+
+    @classmethod
+    def create(cls, name, university):
+        return cls(name=name, university=university)
 
     def __unicode__(self):
         return self.name + ', ' + self.university.name
 
     def __str__(self):
         return unicode(self)
-
-    class Meta:
-        verbose_name = 'Faculty'
-        verbose_name_plural = 'Faculties'
-        ordering = ["university", "name"]

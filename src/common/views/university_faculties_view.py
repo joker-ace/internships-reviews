@@ -3,8 +3,6 @@ from django.contrib.auth.decorators import login_required
 
 from django.utils.decorators import method_decorator
 
-from common.models.faculty import Faculty
-
 from common.views.common_base_view import CommonBaseView
 
 
@@ -16,7 +14,6 @@ class UniversityFacultiesView(CommonBaseView):
             university = int(university)
         except:
             return self.json_response({})
-
-        faculties = Faculty.objects.filter(university=university)
+        faculties = self.data.common.get_university_faculties_list(university)
         faculties = [dict(id=f.pk, name=f.name) for f in faculties]
         return self.json_response(faculties)
