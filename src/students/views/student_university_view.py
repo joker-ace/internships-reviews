@@ -10,7 +10,7 @@ from students.forms.student_university_form import StudentUniversityForm
 
 
 class StudentUniversityView(CommonBaseView):
-    template_name = 'students/profile.html'
+    template_name = 'students/university.html'
     form_class = StudentUniversityForm
 
     @method_decorator(login_required)
@@ -22,11 +22,11 @@ class StudentUniversityView(CommonBaseView):
 
     @method_decorator(login_required)
     def post(self, request):
-        university = self.data.common.get_university(request.get('university'))
+        university = self.data.common.get_university(request.POST.get('university'))
         faculty = request.POST.get('faculty')
 
         try:
-            Faculty.objects.get(pk=faculty, university=university)
+            faculty = Faculty.objects.get(pk=faculty, university=university)
         except (Faculty.DoesNotExist, ValueError):
             faculty = Faculty.create(faculty, university)
             faculty.save()
@@ -34,7 +34,7 @@ class StudentUniversityView(CommonBaseView):
         student = Student()
         student.university = university
         student.faculty = faculty
-        student.is_studying = bool(request.POST.get('is_styding'))
+        student.is_studying = bool(request.POST.get('is_studying'))
         student.user = request.user
         student.save()
         return self.redirect_to('companies_list_page')
