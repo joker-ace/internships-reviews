@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load extra_template_tags %}
+
+{% block title %}Add Company Review{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% js 'companies/common.js' %}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+        <form action="" method="post" role="form" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="input-group">
+            <span class="input-group-btn">
+              <span class="btn btn-primary btn-file">
+                Browse <input type="file" name="logo_image">
+              </span>
+            </span>
+            <label for="file_name"></label>
+            <input type="text" id="file_name" name="file_name" class="form-control" readonly>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

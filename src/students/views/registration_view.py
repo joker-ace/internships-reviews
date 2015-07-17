@@ -17,6 +17,8 @@ class RegistrationView(CommonBaseView):
         return self.response()
 
     def post(self, request):
+        if request.user.is_authenticated():
+            return self.redirect_to('companies_list_page')
         form = self.form_class(request.POST)
         if not form.is_valid():
             self.update_context({'form': form})
@@ -27,13 +29,6 @@ class RegistrationView(CommonBaseView):
             self.update_context({'form': form})
             return self.response()
 
-        self.create_user(form)
+        self.data.users.create_user(form)
         messages.success(request, USER_REGISTERED_SUCCESSFULLY_MESSAGE)
         return self.redirect_to('login_page')
-
-    # TODO: this should be in repository logic
-    def create_user(self, model_form):
-        user = model_form.save(commit=False)
-        user.username = user.email
-        user.set_password(user.password)
-        user.save()

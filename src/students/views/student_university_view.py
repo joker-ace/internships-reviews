@@ -6,15 +6,15 @@ from django.utils.decorators import method_decorator
 from common.views.common_base_view import CommonBaseView
 from common.models.faculty import Faculty
 from students.models.student import Student
-from students.forms.student_university_form import StudentUniversityForm
 
 
 class StudentUniversityView(CommonBaseView):
     template_name = 'students/university.html'
-    form_class = StudentUniversityForm
 
     @method_decorator(login_required)
     def get(self, request):
+        if self.data.users.university_record_exists(request.user):
+            return self.redirect_to('companies_list_page')
         self.update_context({
             'universities': self.data.common.get_universities_list()
         })
@@ -22,6 +22,10 @@ class StudentUniversityView(CommonBaseView):
 
     @method_decorator(login_required)
     def post(self, request):
+
+        if self.data.users.university_record_exists(request.user):
+            return self.redirect_to('companies_list_page')
+
         university = self.data.common.get_university(request.POST.get('university'))
         faculty = request.POST.get('faculty')
 

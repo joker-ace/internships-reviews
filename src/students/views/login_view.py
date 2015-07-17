@@ -15,11 +15,13 @@ class LoginView(CommonBaseView):
 
     def get(self, request):
         if request.user.is_authenticated():
-            return self.redirect_to('companies_list_page')
+            return self.redirect_to('student_university_page')
         self.update_context({'form': self.form_class()})
         return self.response()
 
     def post(self, request):
+        if request.user.is_authenticated():
+            return self.redirect_to('student_university_page')
         form = self.form_class(request.POST)
 
         if not form.is_valid():
