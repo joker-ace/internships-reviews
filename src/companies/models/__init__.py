@@ -1,1 +1,3 @@
-__author__ = 'joker'
+# -*- coding: utf-8 -*-
+
+__all__ = ('company',)

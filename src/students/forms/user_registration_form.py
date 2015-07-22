@@ -3,8 +3,10 @@ from django import forms
 from django.core import validators
 from django.contrib.auth.models import User
 
+from common.forms.base_form import BaseForm
 
-class UserRegistrationForm(forms.ModelForm):
+
+class UserRegistrationForm(BaseForm):
     class Meta:
         model = User
         exclude = ('is_active', 'username', 'date_joined',)
@@ -32,6 +34,3 @@ class UserRegistrationForm(forms.ModelForm):
 
         if password != password_confirmation:
             raise forms.ValidationError("Your passwords do not match")
-
-    def get(self, field_name):
-        return self.cleaned_data.get(field_name, '')

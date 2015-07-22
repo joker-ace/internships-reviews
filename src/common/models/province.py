@@ -6,10 +6,8 @@ class Province(models.Model):
     name = models.CharField(max_length=50)
 
     class Meta:
+        db_table = 'province'
         ordering = ['name']
 
     def __unicode__(self):
         return self.name
-
-    def __str__(self):
-        return unicode(self)

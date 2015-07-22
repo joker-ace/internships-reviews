@@ -8,10 +8,9 @@ class University(models.Model):
     province = models.ForeignKey(Province, default=None)
 
     class Meta:
+        db_table = 'university'
         ordering = ['name']
+        verbose_name_plural = 'Universities'
 
     def __unicode__(self):
         return self.name
-
-    class Meta:
-        verbose_name_plural = 'Universities'

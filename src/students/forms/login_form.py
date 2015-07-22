@@ -2,13 +2,12 @@
 from django import forms
 from django.core import validators
 
+from common.forms.base_form import BaseForm
 
-class LoginForm(forms.Form):
+
+class LoginForm(BaseForm):
     email = forms.EmailField(
         required=True,
         validators=[validators.EmailValidator]
     )
     password = forms.CharField(required=True)
-
-    def get(self, field_name):
-        return self.cleaned_data.get(field_name, '')

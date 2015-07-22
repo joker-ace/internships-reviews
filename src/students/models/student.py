@@ -13,8 +13,8 @@ class Student(models.Model):
     faculty = models.ForeignKey(Faculty)
     is_studying = models.BooleanField(default=False)
 
+    class Meta:
+        db_table = 'student'
+
     def __unicode__(self):
         return unicode('Student: ' + self.user)
-
-    def __str__(self):
-        return unicode(self)

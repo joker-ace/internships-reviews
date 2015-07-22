@@ -12,5 +12,6 @@ INSTALLED_APPS = (
 
 INSTALLED_APPS += (
     'common',
-    'students'
+    'students',
+    'companies'
 )

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from students.models.student import Student
 
 
-class Repository(object):
+class UsersDataRepository(object):
     def user_exists(self, username):
         return User.objects.filter(username=username).exists()
 

@@ -5,26 +5,82 @@
 
 {% block js %}
   {{ block.super }}
+  {% js 'select2.min.js' %}
   {% js 'companies/common.js' %}
+{% endblock %}
+
+{% block css %}
+  {{ block.super }}
+  {% css 'select2.min.css' %}
+  {% css 'select2-bootstrap.min.css' %}
 {% endblock %}
 
 {% block content %}
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-        <form action="" method="post" role="form" enctype="multipart/form-data">
-          {% csrf_token %}
-          <div class="input-group">
-            <span class="input-group-btn">
-              <span class="btn btn-primary btn-file">
-                Browse <input type="file" name="logo_image">
-              </span>
-            </span>
-            <label for="file_name"></label>
-            <input type="text" id="file_name" name="file_name" class="form-control" readonly>
+      <form action="" method="post" role="form" enctype="multipart/form-data"
+            class="form-horizontal col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+        {% csrf_token %}
+        <fieldset>
+          <legend>Internship company info</legend>
+          <div class="row">
+            <div class="form-group col-xs-12 col-sm-12 col-md-12 {% if form.company.errors %}has-error{% endif %}">
+              <label for="company" class="control-label">Company:</label>
+              <select name="company" class="form-control" id="company">
+                <option></option>
+                {% for company in companies %}
+                  <option value="{{ company.pk }}"
+                          {% if company.pk|to_str == form.company.value %}selected{% endif %}>{{ company.name }}</option>
+                {% endfor %}
+              </select>
+              {% if form.company.errors %}<span class="error-message">Please, select a company</span>{% endif %}
+            </div>
           </div>
-        </form>
-      </div>
+
+          <div class="row">
+            <div class="form-group col-xs-12 col-sm-12 col-md-12 {% if form.province.errors %}has-error{% endif %}">
+              <label for="province" class="control-label">Province:</label>
+              <select name="province" class="form-control" id="province">
+                <option></option>
+                {% for province in provinces %}
+                  <option value="{{ province.pk }}"
+                          {% if province.pk|to_str == form.province.value %}selected{% endif %}>{{ province.name }}</option>
+                {% endfor %}
+              </select>
+              {% if form.province.errors %}<span class="error-message">Please, select a province</span>{% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-xs-12 col-sm-12 col-md-12 {% if form.city.errors %}has-error{% endif %}">
+              <label for="city" class="control-label">City:</label>
+              <select name="city" class="form-control" id="city">
+                {% if form.city.value %}
+                  <option value="{{ form.city.value }}" selected>{{ form.city.value }}</option>
+                {% endif %}
+                {% for city in cities %}
+                  <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+              </select>
+              {% if form.city.errors %}<span class="error-message">Please, select city</span>{% endif %}
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Internship review</legend>
+          <div class="row">
+
+          </div>
+        </fieldset>
+
+        <div class="row">
+          <div class="form-group col-xs-12 col-sm-12 col-md-12">
+            <button class="btn btn-primary btn-block" type="submit"><span class="fa fa-comment">&nbsp;</span>Add Review
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 {% endblock %}

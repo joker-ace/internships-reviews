@@ -26,7 +26,7 @@ class StudentUniversityView(CommonBaseView):
         if self.data.users.university_record_exists(request.user):
             return self.redirect_to('companies_list_page')
 
-        university = self.data.common.get_university(request.POST.get('university'))
+        university = self.data.common.get_university_by_pk(request.POST.get('university'))
         faculty = request.POST.get('faculty')
 
         try:

@@ -23,3 +23,8 @@ def css(css_file_path, prefix='/static/css/'):
     """
     relative_path = prefix + css_file_path
     return '<link href="{}"  type="text/css" rel="stylesheet" />'.format(relative_path)
+
+
+@register.filter
+def to_str(value):
+    return unicode(value)

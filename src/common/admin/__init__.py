@@ -3,8 +3,8 @@ from django.contrib import admin
 
 from common.models.university import University
 from common.models.faculty import Faculty
-from common.models.company import Company
 from common.models.province import Province
+from common.models.error_log import ErrorLog
 
 
 @admin.register(University)
@@ -17,4 +17,4 @@ class UniversityAdmin(admin.ModelAdmin):
 
 admin.site.register(Province)
 admin.site.register(Faculty)
-admin.site.register(Company)
+admin.site.register(ErrorLog)

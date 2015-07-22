@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from common.views.common_base_view import CommonBaseView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator

@@ -20,6 +20,10 @@ main {
     padding-top: 25px;
 }
 
+.error-message {
+    color: red;
+}
+
 .btn-file {
     position: relative;
     overflow: hidden;

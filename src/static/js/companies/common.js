@@ -1,14 +1,31 @@
 $(document).ready(function () {
 
-    $(document).on('change', '.btn-file :file', function () {
-        var label = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
-        $(this).trigger('fileselect', [label]);
+    // ///////////////////////////////////////////////////////////////////
+    $("#company").select2({
+        placeholder: "Select your company or type a new one",
+        theme: "bootstrap",
+        tags: true
+    }).on("change", function () {
+        $(this).closest('.form-group').removeClass('has-error');
+        $(this).parent().find('span.error-message').remove();
+    });
+    // ///////////////////////////////////////////////////////////////////
+
+    $("#province").select2({
+        placeholder: "Select province",
+        theme: "bootstrap"
+    }).on("change", function () {
+        $(this).closest('.form-group').removeClass('has-error');
+        $(this).parent().find('span.error-message').remove();
     });
 
-    $('.btn-file :file').on('fileselect', function (event, label) {
-        var input = $('#file_name');
-        if (input.length) {
-            input.val(label);
-        }
+    // ///////////////////////////////////////////////////////////////////
+    $("#city").select2({
+        placeholder: "Select city",
+        theme: "bootstrap",
+        tags: true
+    }).on("change", function () {
+        $(this).closest('.form-group').removeClass('has-error');
+        $(this).parent().find('span.error-message').remove();
     });
 });

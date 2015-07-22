@@ -8,8 +8,8 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('common', '0001_initial'),
         ('auth', '0006_require_contenttypes_0002'),
-        ('common', '0002_auto_20150630_2020'),
     ]
 
     operations = [
@@ -21,5 +21,8 @@ class Migration(migrations.Migration):
                 ('faculty', models.ForeignKey(to='common.Faculty')),
                 ('university', models.ForeignKey(to='common.University')),
             ],
+            options={
+                'db_table': 'student',
+            },
         ),
     ]
