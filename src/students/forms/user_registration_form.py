@@ -5,8 +5,7 @@ from django.contrib.auth.models import User
 
 from common.forms.base_form import BaseForm
 
-
-class UserRegistrationForm(BaseForm):
+class UserRegistrationForm(forms.ModelForm, BaseForm):
     class Meta:
         model = User
         exclude = ('is_active', 'username', 'date_joined',)

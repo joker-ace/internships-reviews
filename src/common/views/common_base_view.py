@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 from django.views.generic import View
+
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
 from utils.data_repositories_factory import DataRepositoriesFactory
 
+from utils.error_logging_tools import exception_logging
 
+
+@exception_logging
 class CommonBaseView(View):
     form_class = None
     template_name = None

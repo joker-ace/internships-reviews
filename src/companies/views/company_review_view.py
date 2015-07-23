@@ -37,7 +37,6 @@ class CompanyReviewView(CommonBaseView):
                 company.pk = None
                 company.city = company_form.get('city')
 
-
         self.update_context({
             'company_form': company_form,
             'companies': self.data.companies_data.get_companies_list(),

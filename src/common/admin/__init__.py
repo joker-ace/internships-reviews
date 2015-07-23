@@ -15,6 +15,10 @@ class UniversityAdmin(admin.ModelAdmin):
     inlines = [FacultyInline]
 
 
+@admin.register(ErrorLog)
+class ErrorLogAdmin(admin.ModelAdmin):
+    readonly_fields = ('date', 'message', 'error_url', 'stacktrace')
+
+
 admin.site.register(Province)
 admin.site.register(Faculty)
-admin.site.register(ErrorLog)

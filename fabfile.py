@@ -99,13 +99,18 @@ def create_application_database():
         user='postgres'
     )
 
+def drop_application_database():
+    sudo(
+        'dropdb {}'.format(config.get('database', 'name')),
+        user='postgres',
+        shell=False
+    )
 
 def create_application_database_user():
     sudo(
         'createuser --interactive -P',
         user='postgres'
     )
-
 
 def clone_application_from_repository():
     with cd(project_folder):
