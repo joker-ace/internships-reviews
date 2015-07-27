@@ -25,7 +25,11 @@ class CommonBaseView(View):
         self.context.update(context)
 
     def json_response(self, data=None):
-        data = {'result': data}
+        if isinstance(data, list):
+            data = {
+                'items': data,
+                'count': len(data)
+            }
         return JsonResponse(data)
 
     def response(self):

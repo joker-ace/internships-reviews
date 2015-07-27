@@ -24,45 +24,53 @@
         <fieldset>
           <legend>Internship company info</legend>
           <div class="row">
-            <div class="form-group col-xs-12 col-sm-12 col-md-12 {% if form.company.errors %}has-error{% endif %}">
+            <div
+                class="form-group col-xs-12 col-sm-12 col-md-12 {% if company_form.company.errors %}has-error{% endif %}">
               <label for="company" class="control-label">Company:</label>
               <select name="company" class="form-control" id="company">
                 <option></option>
+                {% if not company_exists and company_form.company.value %}
+                  <option value="{{ company_form.company.value }}" selected>{{ company_form.company.value }}</option>
+                {% endif %}
                 {% for company in companies %}
                   <option value="{{ company.pk }}"
-                          {% if company.pk|to_str == form.company.value %}selected{% endif %}>{{ company.name }}</option>
+                          {% if company.name == company_form.company.value %}selected{% endif %}>{{ company.name }}</option>
                 {% endfor %}
               </select>
-              {% if form.company.errors %}<span class="error-message">Please, select a company</span>{% endif %}
+              {% if company_form.company.errors %}<span class="error-message">This field is required</span>{% endif %}
             </div>
           </div>
 
           <div class="row">
-            <div class="form-group col-xs-12 col-sm-12 col-md-12 {% if form.province.errors %}has-error{% endif %}">
+            <div
+                class="form-group col-xs-12 col-sm-12 col-md-12 {% if company_form.province.errors %}has-error{% endif %}">
               <label for="province" class="control-label">Province:</label>
               <select name="province" class="form-control" id="province">
                 <option></option>
                 {% for province in provinces %}
                   <option value="{{ province.pk }}"
-                          {% if province.pk|to_str == form.province.value %}selected{% endif %}>{{ province.name }}</option>
+                          {% if province.pk|to_str == company_form.province.value %}selected{% endif %}>{{ province.name }}</option>
                 {% endfor %}
               </select>
-              {% if form.province.errors %}<span class="error-message">Please, select a province</span>{% endif %}
+              {% if company_form.province.errors %}
+                <span class="error-message">Please, select a province</span>{% endif %}
             </div>
           </div>
 
           <div class="row">
-            <div class="form-group col-xs-12 col-sm-12 col-md-12 {% if form.city.errors %}has-error{% endif %}">
+            <div class="form-group col-xs-12 col-sm-12 col-md-12 {% if company_form.city.errors %}has-error{% endif %}">
               <label for="city" class="control-label">City:</label>
               <select name="city" class="form-control" id="city">
-                {% if form.city.value %}
-                  <option value="{{ form.city.value }}" selected>{{ form.city.value }}</option>
+                <option></option>
+                {% if not city_exists and company_form.city.value %}
+                  <option value="{{ company_form.city.value }}" selected>{{ company_form.city.value }}</option>
                 {% endif %}
                 {% for city in cities %}
-                  <option value="{{ city }}">{{ city }}</option>
+                  <option value="{{ city }}"
+                          {% if city.pk|to_str == company.city.value %}selected{% endif %}>{{ city }}</option>
                 {% endfor %}
               </select>
-              {% if form.city.errors %}<span class="error-message">Please, select city</span>{% endif %}
+              {% if company_form.city.errors %}<span class="error-message">Please, select city</span>{% endif %}
             </div>
           </div>
         </fieldset>

@@ -2,6 +2,7 @@
 from common.models.university import University
 from common.models.faculty import Faculty
 from common.models.province import Province
+from common.models.city import City
 
 
 class CommonDataRepository(object):
@@ -25,3 +26,32 @@ class CommonDataRepository(object):
 
     def get_provinces_list(self):
         return Province.objects.all()
+
+    def get_province_by_id(self, province):
+        try:
+            return Province.objects.get(pk=province)
+        except Province.DoesNotExist:
+            return None
+
+    def get_cities_list(self):
+        return City.objects.all()
+
+    def find_cities_which_names_start_with(self, query, province=None):
+        cities = self.get_cities_list().filter(name__istartswith=query)
+        if province:
+            cities = cities.filter(province=province)
+        return cities
+
+    def get_city_by_name(self, name):
+        try:
+            return City.objects.get(name=name)
+        except City.DoesNotExist:
+            return None
+
+    def add_city(self, city_name, city_province, return_new_instance=False):
+        city = City()
+        city.name = city_name
+        city.province = city_province
+        city.save()
+        if return_new_instance:
+            return city

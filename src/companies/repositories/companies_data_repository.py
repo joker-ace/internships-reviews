@@ -5,17 +5,26 @@ from companies.models.company import Company
 
 class CompaniesDataRepository(object):
     def get_companies_list(self):
-        return Company.objects.all()
+        return Company.objects.order_by('name').all()
 
-    def company_exists(self, company, province, city):
-        try:
-            company = int(company)
-            return Company.objects.filter(pk=company, province=province, city__iexact=city).exists()
-        except ValueError:
-            return Company.objects.filter(name=company, province=province, city__iexact=city).exists()
+    def find_companies_which_names_start_with(self, query=None):
+        companies = self.get_companies_list()
+        if query:
+            companies = companies.filter(name__istartswith=query)
+        return companies
 
-    def get_company_by_pk(self, company):
+    def get_company_by_name(self, company_name):
         try:
-            return Company.objects.get(pk=company)
-        except (Company.DoesNotExist, ValueError):
-            return None
+            return Company.objects.get(name=company_name)
+        except Company.DoesNotExist:
+            pass
+
+    def add_company(self, company_name, city):
+        company = Company()
+        company.name = company_name
+        company.cities.add(city)
+        company.save()
+
+    def add_company_office(self, company, city):
+        company.cities.add(city)
+        company.save()

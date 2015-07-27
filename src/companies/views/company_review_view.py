@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 
 from common.views.common_base_view import CommonBaseView
 from companies.forms.company_form import CompanyForm
-from companies.models.company import Company
+
 
 class CompanyReviewView(CommonBaseView):
     template_name = 'companies/company_review.html'
@@ -14,32 +14,38 @@ class CompanyReviewView(CommonBaseView):
     @method_decorator(login_required)
     def get(self, request):
         self.update_context({
-            'form': self.form_class(),
-            'companies': self.data.companies_data.get_companies_list(),
-            'provinces': self.data.common.get_provinces_list()
+            'provinces': self.data.common.get_provinces_list(),
+            'company_form': self.form_class()
         })
         return self.response()
 
     @method_decorator(login_required)
     def post(self, request):
         company_form = self.form_class(request.POST)
-        if company_form.is_valid():
-            company = company_form.get('company')
-            province = company_form.get('province')
-            city = company_form.get('city')
-            if not self.data.companies_data.company_exists(company=company, province=province, city=city):
-                company = self.data.companies_data.get_company_by_pk(company_form.get('company'))
-                if not company:
-                    company = Company()
-                    company.name = company_form.get('company')
+        if not company_form.is_valid():
+            self.update_context({
+                'company_form': company_form,
+                'provinces': self.data.common.get_provinces_list()
+            })
+            return self.response()
 
-                company.id = None
-                company.pk = None
-                company.city = company_form.get('city')
+        company = company_form.get('company')
+        province = company_form.get('province')
+        city = company_form.get('city')
+
+        province = self.data.common.get_province_by_id(province)
+        city = self.data.common.get_city_by_name(city)
+        if not city:
+            city = self.data.common.add_city(company_form.get('city'), province, return_new_instance=True)
+
+        company = self.data.companies.get_company_by_name(company)
+        if not company:
+            self.data.companies.add_company(company_form.get('company'), city)
+        else:
+            self.data.companies.add_company_office(company, city)
 
         self.update_context({
             'company_form': company_form,
-            'companies': self.data.companies_data.get_companies_list(),
             'provinces': self.data.common.get_provinces_list()
         })
         return self.response()

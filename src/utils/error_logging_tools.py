@@ -12,7 +12,7 @@ def exception_logging(View):
                 return dispatch_function(request, *args, **kwargs)
             except Exception as e:
                 error_log = ErrorLog()
-                error_log.stacktrace = traceback.format_exc()
+                error_log.stacktrace = traceback.format_exc().replace('\n', '<br/>')
                 error_log.message = e.message
                 error_log.error_url = request.path_info
                 error_log.save()

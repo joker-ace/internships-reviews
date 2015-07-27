@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-
-from common.repositories.common_data_repository import CommonDataRepository
 from students.repositories.users_data_repository import UsersDataRepository
 from companies.repositories.companies_data_repository import CompaniesDataRepository
+from common.repositories.common_data_repository import CommonDataRepository
+
+
 
 class DataRepositoriesFactory(object):
     @property
@@ -14,5 +15,5 @@ class DataRepositoriesFactory(object):
         return UsersDataRepository()
 
     @property
-    def companies_data(self):
+    def companies(self):
         return CompaniesDataRepository()

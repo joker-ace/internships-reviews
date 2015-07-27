@@ -7,6 +7,8 @@ class ErrorLog(models.Model):
     stacktrace = models.TextField()
     date = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'error_log'
 
     def __unicode__(self):
-        return 'Error log #{} from {}'.format(self.pk, self.date.strftime('%d-%m-%Y %H:%M'))
+        return '{} | {}'.format(self.date.strftime('%d-%m-%Y %H:%M'), self.error_url)
