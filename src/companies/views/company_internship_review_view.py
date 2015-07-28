@@ -53,11 +53,11 @@ class CompanyInternshipReviewView(CommonBaseView):
         province = self.data.common.get_province_by_id(province)
         city = self.data.common.get_city_by_name(city)
         if not city:
-            city = self.data.common.add_city(company_form.get('city'), province, return_new_instance=True)
+            city = self.data.common.add_city(company_form.get('city'), province)
 
         company = self.data.companies.get_company_by_name(company)
         if not company:
-            self.data.companies.add_company(company_form.get('company'), city)
+            company = self.data.companies.add_company(company_form.get('company'), city)
         else:
             self.data.companies.add_company_office(company, city)
 

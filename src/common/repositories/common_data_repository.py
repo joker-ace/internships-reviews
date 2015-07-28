@@ -53,5 +53,4 @@ class CommonDataRepository(object):
         city.name = city_name
         city.province = city_province
         city.save()
-        if return_new_instance:
-            return city
+        return city

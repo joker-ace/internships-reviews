@@ -22,8 +22,9 @@ class CompaniesDataRepository(object):
     def add_company(self, company_name, city):
         company = Company()
         company.name = company_name
-        company.cities.add(city)
         company.save()
+        company.cities.add(city)
+        return company
 
     def add_company_office(self, company, city):
         company.cities.add(city)

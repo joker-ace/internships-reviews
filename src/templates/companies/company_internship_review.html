@@ -136,7 +136,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                   <div class="form-group">
                     <label for="tasks">What tasks did you do there?</label>
-                    <textarea id="tasks" name="tasks" class="form-control"></textarea>
+                    <textarea id="tasks" name="tasks" class="form-control">{{ review_form.tasks.value|default_if_none:'' }}</textarea>
                   </div>
                 </div>
               </div>
@@ -145,7 +145,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                   <div class="form-group">
                     <label for="most-liked-things">What you liked the most?</label>
-                    <textarea id="most-liked-things" name="most_liked_things" class="form-control"></textarea>
+                    <textarea id="most-liked-things" name="most_liked_things" class="form-control">{{ review_form.most_liked_things.value|default_if_none:'' }}</textarea>
                   </div>
                 </div>
               </div>
@@ -154,7 +154,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                   <div class="form-group">
                     <label for="least-liked-things">What you liked the least?</label>
-                    <textarea id="least-liked-things" name="least_liked_things" class="form-control"></textarea>
+                    <textarea id="least-liked-things" name="least_liked_things" class="form-control">{{ review_form.least_liked_things.value|default_if_none:'' }}</textarea>
                   </div>
                 </div>
               </div>
