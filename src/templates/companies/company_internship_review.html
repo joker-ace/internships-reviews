@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load extra_template_tags %}
+
+{% block title %}Add Company Review{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% js 'select2.min.js' %}
+  {% js 'jquery.raty-fa.js' %}
+  {% js 'companies/scripts.js' %}
+{% endblock %}
+
+{% block css %}
+  {{ block.super }}
+  {% css 'select2.min.css' %}
+  {% css 'select2-bootstrap.min.css' %}
+{% endblock %}
+
+{% block content %}
+  <form action="" method="post" role="form" class="form-horizontal">
+    {% csrf_token %}
+
+    <div class="row">
+      <div class="col-sm-6 col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Internship company info (required)</h3>
+          </div>
+          <div class="panel-body">
+            <div class="panel-body-wrapper">
+              <div class="row">
+                <div class="col-sm-12 col-md-12">
+                  <div class="form-group {% if company_form.company.errors %}has-error{% endif %}">
+                    <label for="company" class="control-label">Company: {% if company_form.company.errors %}
+                      <span class="error-message">*required field</span>{% endif %}</label>
+                    <select name="company" class="form-control" id="company">
+                      <option></option>
+                      {% if not company_exists and company_form.company.value %}
+                        <option value="{{ company_form.company.value }}"
+                                selected>{{ company_form.company.value }}</option>
+                      {% endif %}
+                      {% for company in companies %}
+                        <option value="{{ company.pk }}"
+                                {% if company.name == company_form.company.value %}selected{% endif %}>{{ company.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-12">
+                  <div class="form-group {% if company_form.province.errors %}has-error{% endif %}">
+                    <label for="province" class="control-label">Province: {% if company_form.province.errors %}
+                      <span class="error-message">*required field</span>{% endif %}</label>
+                    <select name="province" class="form-control" id="province">
+                      <option></option>
+                      {% for province in provinces %}
+                        <option value="{{ province.pk }}"
+                                {% if province.pk|to_str == company_form.province.value %}selected{% endif %}>{{ province.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-12">
+                  <div class="form-group {% if company_form.city.errors %}has-error{% endif %}">
+                    <label for="city" class="control-label">City: {% if company_form.city.errors %}
+                      <span class="error-message">*required field</span>{% endif %}</label>
+                    <select name="city" class="form-control" id="city">
+                      <option></option>
+                      {% if not city_exists and company_form.city.value %}
+                        <option value="{{ company_form.city.value }}" selected>{{ company_form.city.value }}</option>
+                      {% endif %}
+                      {% for city in cities %}
+                        <option value="{{ city }}"
+                                {% if city.pk|to_str == company.city.value %}selected{% endif %}>{{ city }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6">
+        <div class="panel panel-default height-304">
+          <div class="panel-heading">
+            <h3 class="panel-title">Internship rating (required)</h3>
+          </div>
+          <div class="panel-body">
+            <div class="panel-body-wrapper">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group {% if review_form.recommendation.errors %}has-error{% endif %}">
+                    <label for="recommendation-rating" style="text-align: left" class="control-label">Would you
+                      recommend other students to do their internships at this Company?</label>
+                    <div id="recommendation-rating" data-score="{{ review_form.recommendation.value }}"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group {% if review_form.apply_skills.errors %}has-error{% endif %}">
+                    <label for="apply-learnt-things-rating" class="control-label">Did you apply things you learnt at the
+                      University?</label>
+                    <div id="apply-learnt-things-rating" data-score="{{ review_form.apply_skills.value }}"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group {% if review_form.learn_new.errors %}has-error{% endif %}">
+                    <label for="learn-new-rating" class="control-label">Did you learn useful things related to what you
+                      studied at the University?</label>
+                    <div id="learn-new-rating" data-score="{{ review_form.learn_new.value }}"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Internship review (optional)</h3>
+          </div>
+          <div class="panel-body">
+            <div class="panel-body-wrapper">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                    <label for="tasks">What tasks did you do there?</label>
+                    <textarea id="tasks" name="tasks" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                    <label for="most-liked-things">What you liked the most?</label>
+                    <textarea id="most-liked-things" name="most_liked_things" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                    <label for="least-liked-things">What you liked the least?</label>
+                    <textarea id="least-liked-things" name="least_liked_things" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+          <button class="btn btn-primary center-block" type="submit"><span class="fa fa-comment">&nbsp;</span>Submit
+            Review
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+{% endblock %}

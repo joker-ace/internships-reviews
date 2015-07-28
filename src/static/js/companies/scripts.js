@@ -86,4 +86,32 @@ $(document).ready(function () {
     }).on("change", function () {
         clearErrorMessageFor($(this));
     });
+
+    $("#recommendation-rating").raty({
+        cancel: true,
+        number: 10,
+        scoreName: 'recommendation',
+        score: function () {
+            return $(this).attr('data-score');
+        }
+    });
+
+    $("#apply-learnt-things-rating").raty({
+        cancel: true,
+        number: 10,
+        scoreName: 'apply_skills',
+        score: function () {
+            return $(this).attr('data-score');
+        }
+    });
+
+    $("#learn-new-rating").raty({
+        cancel: true,
+        number: 10,
+        scoreName: 'learn_new',
+        score: function () {
+            return $(this).attr('data-score');
+        }
+    });
+
 });

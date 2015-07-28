@@ -3,5 +3,12 @@
 {% block title %}Companies List{% endblock %}
 
 {% block content %}
+  {% for company in companies %}
+
+  {% empty %}
+    <div class="row text-center">
+      <h4>Sorry, no companies added yet</h4>
+    </div>
+  {% endfor %}
 
 {% endblock %}

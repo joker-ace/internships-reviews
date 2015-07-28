@@ -9,4 +9,7 @@ class CompaniesListView(CommonBaseView):
 
     @method_decorator(login_required)
     def get(self, request):
+        self.update_context({
+            'companies': None
+        })
         return self.response()

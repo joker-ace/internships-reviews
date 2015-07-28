@@ -2,7 +2,6 @@
 from django.db import models
 
 from utils.random_file_name import RandomFileName
-from common.models.province import Province
 from common.models.city import City
 
 

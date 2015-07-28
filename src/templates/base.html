@@ -6,7 +6,7 @@
   <title>Internships Reviews - {% block title %}{% endblock %}</title>
   {% block css %}
     <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet"/>
-    <link href="{% static 'css/font-awesome.min.css' %}" type="text/css" rel="stylesheet" />
+    <link href="{% static 'css/font-awesome.min.css' %}" type="text/css" rel="stylesheet"/>
     <link href="{% static 'css/common.css' %}" type="text/css" rel="stylesheet"/>
   {% endblock %}
   {% block js %}
@@ -16,7 +16,7 @@
   {% endblock %}
 </head>
 <body>
-<div class="container">
+<div class="wrapper">
   <header class="container">
     {% block header %}
       <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -36,10 +36,12 @@
             {% if request.user.is_authenticated %}
               <ul class="nav navbar-nav navbar-right">
                 <li>
-                  <a href="{% url 'company_review_page' %}" class="btn btn-link"><span class="fa fa-plus">&nbsp;</span>Add Review</a>
+                  <a href="{% url 'company_review_page' %}" class="btn btn-link"><span
+                      class="fa fa-plus">&nbsp;</span>Add Internship Review</a>
                 </li>
                 <li>
-                  <a href="#" class="btn btn-link"><span class="fa fa-user">&nbsp;</span>{{ request.user.first_name }} {{ request.user.last_name }}</a>
+                  <a href="#" class="btn btn-link"><span
+                      class="fa fa-user">&nbsp;</span>{{ request.user.first_name }} {{ request.user.last_name }}</a>
                 </li>
                 <li><a class="btn btn-link" href="{% url 'logout_page' %}">
                   <span class="fa fa-sign-out">&nbsp;</span>Logout</a></li>
@@ -53,8 +55,10 @@
   <main class="container">
     {% block content %}{% endblock %}
   </main>
-  <footer class="container">
+  <footer>
+    <div class="container">
     <div class="text-center">2015 <i class="fa fa-copyright"></i></div>
+    </div>
   </footer>
 </div>
 {% block on_load_js %}{% endblock %}

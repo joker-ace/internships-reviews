@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 from companies.models.company import Company
-
+from companies.models.company_internship_review import CompanyInternshipReview
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
@@ -17,3 +17,6 @@ class CompanyAdmin(admin.ModelAdmin):
 
     inlines = (CompanyOfficesInline,)
     exclude = ('cities',)
+
+
+admin.site.register(CompanyInternshipReview)
