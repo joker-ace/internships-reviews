@@ -10,7 +10,7 @@ class Company(models.Model):
     cities = models.ManyToManyField(City, db_table='company_office')
     logo_image = models.ImageField(
         upload_to=RandomFileName('companies'), null=True,
-        default='/static/logo_default.png')
+        default='/static/images/logo_default.png')
 
     class Meta:
         db_table = 'company'

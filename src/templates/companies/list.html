@@ -1,14 +1,84 @@
 {% extends 'base.html' %}
+{% load extra_template_tags %}
 
 {% block title %}Companies List{% endblock %}
 
+{% block js %}
+  {{ block.super }}
+  {% js 'jquery.raty-fa.js' %}
+{% endblock %}
+
 {% block content %}
-  {% for company in companies %}
+  <table class="table table-striped table-responsive table-bordered">
+    <tr>
+      <th style="width: 120px" class="text-center">Logo</th>
+      <th class="text-center">Name</th>
+      <th style="width: 150px" class="text-center">Recommendations</th>
+      <th style="width: 140px" class="text-center">Apply learnt</th>
+      <th style="width: 140px" class="text-center">Learn new</th>
+    </tr>
+    {% for company in companies %}
+      <tr>
+        <td>
+          <a href="#"><img height="100" src="{{ company.logo_image.url }}" alt="{{ company.name }}"></a>
+        </td>
+        <td class="vertical-align text-center">
+          <a href="#">{{ company.name }}</a>
+        </td>
+        <td class="vertical-align text-center">
+          <div class="recommendation" data-score="0"></div>
+        </td>
+        <td class="vertical-align text-center">
+          <div class="apply-learnt" data-score="0"></div>
+        </td>
+        <td class="vertical-align text-center">
+          <div class="learn-new" data-score="0"></div>
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="5"><h4>Sorry, no companies added yet</h4></td>
+      </tr>
+    {% endfor %}
 
-  {% empty %}
-    <div class="row text-center">
-      <h4>Sorry, no companies added yet</h4>
-    </div>
-  {% endfor %}
+    {% if companies %}
+      <tr>
+        <td colspan="5" class="text-center">
+          <ul class="pagination pagination-sm">
+            {% if companies.has_previous %}
+              <li><a href="?page={{ companies.previous_page_number }}">«</a></li>
+            {% else %}
+              <li class="disabled"><a href="#">«</a></li>
+            {% endif %}
 
+            <li class="disabled">
+              <a href="#">Page {{ companies.number }} of {{ companies.paginator.num_pages }}</a>
+            </li>
+
+            {% if companies.has_next %}
+              <li><a href="?page={{ companies.next_page_number }}">»</a></li>
+            {% else %}
+              <li class="disabled"><a href="#">»</a></li>
+            {% endif %}
+          </ul>
+        </td>
+      </tr>
+    {% endif %}
+  </table>
+{% endblock %}
+
+{% block on_load_js %}
+  <script>
+    $(document).ready(function () {
+      $(".recommendation, .apply-learnt, .learn-new").raty({
+        number: 5,
+        readOnly: true,
+        score: function () {
+          return $(this).attr('data-score');
+        }
+      });
+
+
+    });
+  </script>
 {% endblock %}

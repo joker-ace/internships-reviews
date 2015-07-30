@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
 }
+
 html, body {
     height: 100%;
     font-size: 14px;
@@ -25,8 +26,8 @@ main {
 }
 
 .wrapper {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 .error-message {
@@ -63,4 +64,12 @@ main {
 
 .height-304 {
     height: 304px;
+}
+
+.min-220-width {
+    min-width: 220px;
+}
+
+.table tbody > tr > td.vertical-align {
+    vertical-align: middle;
 }
