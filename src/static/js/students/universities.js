@@ -1,9 +1,9 @@
 var s2faculties = null;
 
 function onFacultiesDataReceived(data) {
-    if (data.result) {
+    if (data && data.count) {
         var faculties = [];
-        data.result.forEach(function (faculty) {
+        data.items.forEach(function (faculty) {
             faculties.push({
                 id: faculty.id,
                 text: faculty.name
@@ -38,11 +38,6 @@ $(document).ready(function () {
         // on select, find all faculties of the selected university
         var url = $("#university_faculties_url").val();
         var data = s2universities.serialize() + '&' + csrf();
-        $.post(
-            url,
-            data,
-            onFacultiesDataReceived,
-            "json"
-        );
+        $.post(url, data, onFacultiesDataReceived, "json");
     });
 });

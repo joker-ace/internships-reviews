@@ -21,5 +21,14 @@ class Company(models.Model):
 
     def to_dict(self):
         return {
-            'name': self.name
+            'id': self.id,
+            'name': self.name,
+            'logo_image': self.logo_image
+        }
+
+    def to_api_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'logo_image': self.logo_image.url
         }

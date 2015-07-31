@@ -10,6 +10,7 @@
 
 {% block content %}
   <table class="table table-striped table-responsive table-bordered">
+    {% if companies %}
     <tr>
       <th style="width: 120px" class="text-center">Logo</th>
       <th class="text-center">Name</th>
@@ -17,27 +18,28 @@
       <th style="width: 140px" class="text-center">Apply learnt</th>
       <th style="width: 140px" class="text-center">Learn new</th>
     </tr>
+    {% endif %}
     {% for company in companies %}
       <tr>
         <td>
-          <a href="#"><img height="100" src="{{ company.logo_image.url }}" alt="{{ company.name }}"></a>
+          <a href="#"><img height="100" width="250" src="{{ company.logo_image.url }}" alt="{{ company.name }}"></a>
         </td>
         <td class="vertical-align text-center">
           <a href="#">{{ company.name }}</a>
         </td>
         <td class="vertical-align text-center">
-          <div class="recommendation" data-score="0"></div>
+          <div class="recommendation" data-score="{{ company.recommendations_score }}"></div>
         </td>
         <td class="vertical-align text-center">
-          <div class="apply-learnt" data-score="0"></div>
+          <div class="apply-learnt" data-score="{{ company.apply_skills_score }}"></div>
         </td>
         <td class="vertical-align text-center">
-          <div class="learn-new" data-score="0"></div>
+          <div class="learn-new" data-score="{{ company.learn_new_score }}"></div>
         </td>
       </tr>
     {% empty %}
       <tr>
-        <td colspan="5"><h4>Sorry, no companies added yet</h4></td>
+        <td colspan="5" class="text-center"><h4>Sorry, no companies added yet</h4></td>
       </tr>
     {% endfor %}
 
@@ -72,6 +74,8 @@
     $(document).ready(function () {
       $(".recommendation, .apply-learnt, .learn-new").raty({
         number: 5,
+        half: true,
+        halfShow : true,
         readOnly: true,
         score: function () {
           return $(this).attr('data-score');

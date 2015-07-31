@@ -9,7 +9,7 @@
           <strong>Well done!</strong> {{ message }}
         </div>
         <p class="help-block">
-          You will be redirected to companies list automatically after <span id="seconds">5</span> seconds
+          You will be redirected to companies list automatically after <span id="seconds">3</span> seconds
         </p>
       </div>
     </div>
@@ -17,7 +17,7 @@
   {% block on_load_js %}
     <script>
       $(document).ready(function () {
-        var seconds = 6;
+        var seconds = 4;
         var interval = setInterval(function() {
           seconds--;
           if (seconds === 0) {
@@ -25,10 +25,7 @@
             clearInterval(interval);
             return false;
           }
-          if (seconds === 5) {
-            return false;
-          }
-          $("#seconds").text(seconds)
+          $("#seconds").text(seconds);
         }, 1000);
       });
     </script>

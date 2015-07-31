@@ -89,7 +89,8 @@ $(document).ready(function () {
 
     $("#recommendation-rating").raty({
         cancel: true,
-        number: 10,
+        number: 5,
+        half: true,
         scoreName: 'recommendation',
         score: function () {
             return $(this).attr('data-score');
@@ -98,7 +99,8 @@ $(document).ready(function () {
 
     $("#apply-learnt-things-rating").raty({
         cancel: true,
-        number: 10,
+        number: 5,
+        half: true,
         scoreName: 'apply_skills',
         score: function () {
             return $(this).attr('data-score');
@@ -107,7 +109,8 @@ $(document).ready(function () {
 
     $("#learn-new-rating").raty({
         cancel: true,
-        number: 10,
+        number: 5,
+        half: true,
         scoreName: 'learn_new',
         score: function () {
             return $(this).attr('data-score');

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from django.db.models import Avg
 
 from companies.models.company import Company
+from companies.models.company_internship_review import CompanyInternshipReview
 
 
 class CompaniesDataRepository(object):
@@ -29,3 +31,23 @@ class CompaniesDataRepository(object):
     def add_company_office(self, company, city):
         company.cities.add(city)
         company.save()
+
+    def get_company_internships_reviews(self, company):
+        try:
+            return CompanyInternshipReview.objects.get(company=company)
+        except:
+            pass
+
+    def get_companies_average_ratings(self, companies_ids=None):
+        if not companies_ids:
+            return None
+
+        return CompanyInternshipReview.objects.values('company').filter(
+            company__id__in=set(companies_ids)
+        ).annotate(
+            recommendations_score=Avg('recommendation')
+        ).annotate(
+            apply_skills_score=Avg('apply_skills')
+        ).annotate(
+            learn_new_score=Avg('learn_new')
+        )
