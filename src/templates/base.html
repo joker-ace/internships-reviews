@@ -29,10 +29,9 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=""><span class="fa fa-comments">&nbsp;</span>Internships Reviews</a>
+            <a class="navbar-brand" href="#"><i class="fa fa-comments">&nbsp;</i>Internships Reviews</a>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-            <ul class="nav navbar-nav"></ul>
             {% if request.user.is_authenticated %}
               <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -44,7 +43,12 @@
                       class="fa fa-user">&nbsp;</span>{{ request.user.first_name }} {{ request.user.last_name }}</a>
                 </li>
                 <li><a class="btn btn-link" href="{% url 'logout_page' %}">
-                  <span class="fa fa-sign-out">&nbsp;</span>Logout</a></li>
+                  <i class="fa fa-sign-out">&nbsp;</i>Sign Out</a></li>
+              </ul>
+            {% else %}
+              <ul class="nav navbar-nav navbar-right">
+                <li><a class="btn btn-link" href="{% url 'login_page' %}"><i class="fa fa-sign-in">&nbsp;</i>Sign In</a></li>
+                <li><a class="btn btn-link" href="{% url 'registration_page' %}"><i class="fa fa-user-plus">&nbsp;</i>Sign Up</a></li>
               </ul>
             {% endif %}
           </div>
@@ -57,7 +61,7 @@
   </main>
   <footer>
     <div class="container">
-    <div class="text-center">2015 <i class="fa fa-copyright"></i></div>
+      <div class="text-center">2015 <i class="fa fa-copyright"></i></div>
     </div>
   </footer>
 </div>

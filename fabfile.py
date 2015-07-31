@@ -62,6 +62,7 @@ system_packages = (
     'python-virtualenv',
     'postgresql',
     'postgresql-contrib',
+    'postgresql-server-dev-all',
     'nginx',
     'supervisor',
     'git',
