@@ -48,9 +48,9 @@
         <td colspan="5" class="text-center">
           <ul class="pagination pagination-sm">
             {% if companies.has_previous %}
-              <li><a href="?page={{ companies.previous_page_number }}">«</a></li>
+              <li><a href="?page={{ companies.previous_page_number }}"><i class="fa fa-arrow-left"></i></a></li>
             {% else %}
-              <li class="disabled"><a href="#">«</a></li>
+              <li class="disabled"><a href="#"><i class="fa fa-arrow-left"></i></a></li>
             {% endif %}
 
             <li class="disabled">
@@ -58,9 +58,9 @@
             </li>
 
             {% if companies.has_next %}
-              <li><a href="?page={{ companies.next_page_number }}">»</a></li>
+              <li><a href="?page={{ companies.next_page_number }}"><i class="fa fa-arrow-right"></i></a></li>
             {% else %}
-              <li class="disabled"><a href="#">»</a></li>
+              <li class="disabled"><a href="#"><i class="fa fa-arrow-right"></i></a></li>
             {% endif %}
           </ul>
         </td>
