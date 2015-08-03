@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load extra_template_tags %}
+
+{% block title %}{{ company.name }}{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    {% js 'jquery.raty-fa.js' %}
+{% endblock %}
+
+{% block content %}
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <th style="width: 120px" class="text-center">Logo</th>
+            <th class="text-center">Name</th>
+            <th style="width: 150px" class="text-center">Recommendations</th>
+            <th style="width: 140px" class="text-center">Apply learnt</th>
+            <th style="width: 140px" class="text-center">Learn new</th>
+        </tr>
+        <tr>
+            <td class="text-center">
+                <a href="#"><img height="75" src="{{ company.logo_image.url }}" alt="{{ company.name }}"></a>
+            </td>
+            <td class="vertical-align text-center" style="font-size: 18px;">
+                <a href="#">{{ company.name }}</a>
+            </td>
+            <td class="vertical-align text-center list-rating-color">
+                <div class="recommendation" data-score="{{ company.recommendations_score }}"></div>
+            </td>
+            <td class="vertical-align text-center list-rating-color">
+                <div class="apply-learnt" data-score="{{ company.apply_skills_score }}"></div>
+            </td>
+            <td class="vertical-align text-center list-rating-color">
+                <div class="learn-new" data-score="{{ company.learn_new_score }}"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5" class="text-center">Students reviews</td>
+        </tr>
+        {% for review in reviews %}
+            <tr>
+                <td colspan="2">Review from <span
+                        class="user-name">{{ review.user.first_name }} {{ review.user.last_name }}</span> for office in
+                    <span class="office">{{ review.office }}</span> on <span
+                            class="review-date">{{ review.date }}</span></td>
+                <td class="vertical-align text-center list-rating-color">
+                    <div class="recommendation" data-score="{{ review.recommendation }}"></div>
+                </td>
+                <td class="vertical-align text-center list-rating-color">
+                    <div class="apply-learnt" data-score="{{ review.apply_skills }}"></div>
+                </td>
+                <td class="vertical-align text-center list-rating-color">
+                    <div class="learn-new" data-score="{{ review.learn_new }}"></div>
+                </td>
+            </tr>
+            {% if review.tasks or review.most_liked_things or review.least_liked_things %}
+                <tr>
+                    <td colspan="5" class="text-justify">
+                        {% if review.tasks %}
+                            <p><span class="text-info text-uppercase start-line">Tasks:</span> {{ review.tasks }}</p>
+                        {% endif %}
+                        {% if review.most_liked_things %}
+                            <p><span class="text-success text-uppercase start-line">Most liked things:</span> {{ review.most_liked_things }}</p>
+                        {% endif %}
+                    {% if review.least_liked_things %}
+                            <p><span class="text-warning text-uppercase start-line">Least liked things:</span> {{ review.least_liked_things }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% empty %}
+            <tr>
+                <td colspan="5">There are no reviews yet</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+{% block on_load_js %}
+    <script>
+        $(document).ready(function () {
+            $(".recommendation, .apply-learnt, .learn-new").raty({
+                number: 5,
+                half: true,
+                halfShow: true,
+                readOnly: true,
+                score: function () {
+                    return $(this).attr('data-score');
+                }
+            });
+        });
+    </script>
+{% endblock %}

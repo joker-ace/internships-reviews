@@ -21,19 +21,19 @@
     {% endif %}
     {% for company in companies %}
       <tr>
-        <td>
-          <a href="#"><img height="100" width="250" src="{{ company.logo_image.url }}" alt="{{ company.name }}"></a>
+        <td class="text-center">
+          <a href="{%  url 'company_page' company.id %}"><img height="75" src="{{ company.logo_image.url }}" alt="{{ company.name }}"></a>
         </td>
-        <td class="vertical-align text-center">
-          <a href="#">{{ company.name }}</a>
+        <td class="vertical-align text-center" style="font-size: 18px;">
+          <a href="{%  url 'company_page' company.id %}">{{ company.name }}</a>
         </td>
-        <td class="vertical-align text-center">
+        <td class="vertical-align text-center list-rating-color">
           <div class="recommendation" data-score="{{ company.recommendations_score }}"></div>
         </td>
-        <td class="vertical-align text-center">
+        <td class="vertical-align text-center list-rating-color">
           <div class="apply-learnt" data-score="{{ company.apply_skills_score }}"></div>
         </td>
-        <td class="vertical-align text-center">
+        <td class="vertical-align text-center list-rating-color">
           <div class="learn-new" data-score="{{ company.learn_new_score }}"></div>
         </td>
       </tr>

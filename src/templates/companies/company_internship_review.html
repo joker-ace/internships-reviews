@@ -96,7 +96,7 @@
                   <div class="form-group {% if review_form.recommendation.errors %}has-error{% endif %}">
                     <label for="recommendation-rating" style="text-align: left" class="control-label">Would you
                       recommend other students to do their internships at this Company?</label>
-                    <div id="recommendation-rating" data-score="{{ review_form.recommendation.value }}"></div>
+                    <div class="list-rating-color" id="recommendation-rating" data-score="{{ review_form.recommendation.value }}"></div>
                   </div>
                 </div>
               </div>
@@ -105,7 +105,7 @@
                   <div class="form-group {% if review_form.apply_skills.errors %}has-error{% endif %}">
                     <label for="apply-learnt-things-rating" class="control-label">Did you apply things you learnt at the
                       University?</label>
-                    <div id="apply-learnt-things-rating" data-score="{{ review_form.apply_skills.value }}"></div>
+                    <div class="list-rating-color" id="apply-learnt-things-rating" data-score="{{ review_form.apply_skills.value }}"></div>
                   </div>
                 </div>
               </div>
@@ -114,7 +114,7 @@
                   <div class="form-group {% if review_form.learn_new.errors %}has-error{% endif %}">
                     <label for="learn-new-rating" class="control-label">Did you learn useful things related to what you
                       studied at the University?</label>
-                    <div id="learn-new-rating" data-score="{{ review_form.learn_new.value }}"></div>
+                    <div class="list-rating-color" id="learn-new-rating" data-score="{{ review_form.learn_new.value }}"></div>
                   </div>
                 </div>
               </div>

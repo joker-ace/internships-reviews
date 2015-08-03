@@ -73,3 +73,27 @@ main {
 .table tbody > tr > td.vertical-align {
     vertical-align: middle;
 }
+
+.list-rating-color {
+    color: #3E648D;
+}
+
+.user-name {
+    font-weight: bold;
+    color: #3E648D;
+}
+
+.review-date {
+    color: green;
+    font-weight: bold;
+}
+
+.office {
+    color: red;
+    font-weight: bold;
+}
+
+.start-line {
+    font-weight: bold;
+    font-size: 15px;
+}

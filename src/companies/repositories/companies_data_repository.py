@@ -6,6 +6,13 @@ from companies.models.company_internship_review import CompanyInternshipReview
 
 
 class CompaniesDataRepository(object):
+
+    def get_company_by_id(self, company_id):
+        try:
+            return Company.objects.get(pk=company_id)
+        except Company.DoesNotExist:
+            pass
+
     def get_companies_list(self):
         return Company.objects.order_by('name').all()
 
@@ -33,10 +40,7 @@ class CompaniesDataRepository(object):
         company.save()
 
     def get_company_internships_reviews(self, company):
-        try:
-            return CompanyInternshipReview.objects.get(company=company)
-        except:
-            pass
+        return CompanyInternshipReview.objects.filter(company=company)
 
     def get_companies_average_ratings(self, companies_ids=None):
         if not companies_ids:
@@ -44,6 +48,20 @@ class CompaniesDataRepository(object):
 
         return CompanyInternshipReview.objects.values('company').filter(
             company__id__in=set(companies_ids)
+        ).annotate(
+            recommendations_score=Avg('recommendation')
+        ).annotate(
+            apply_skills_score=Avg('apply_skills')
+        ).annotate(
+            learn_new_score=Avg('learn_new')
+        )
+
+    def get_company_average_rating(self, company_id):
+        if not company_id:
+            return None
+
+        return CompanyInternshipReview.objects.values('company').filter(
+            company__id=company_id
         ).annotate(
             recommendations_score=Avg('recommendation')
         ).annotate(
