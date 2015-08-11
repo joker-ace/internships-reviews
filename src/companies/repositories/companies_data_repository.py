@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db.models import Avg
+from django.db.models.functions import Coalesce
 
 from companies.models.company import Company
 from companies.models.company_internship_review import CompanyInternshipReview
@@ -15,6 +16,23 @@ class CompaniesDataRepository(object):
 
     def get_companies_list(self):
         return Company.objects.order_by('name').all()
+
+    def get_companies_with_average_ratings_data(self, city=None, faculty=None):
+        companies = Company.objects.values('name', 'id', 'logo_image').annotate(
+            recommendations_score=Coalesce(Avg('companyinternshipreview__recommendation'), 0.0)
+        ).annotate(
+            apply_skills_score=Coalesce(Avg('companyinternshipreview__apply_skills'), 0.0)
+        ).annotate(
+            learn_new_score=Coalesce(Avg('companyinternshipreview__learn_new'), 0.0)
+        ).order_by('-recommendations_score', '-apply_skills_score', '-learn_new_score')
+
+        if city:
+            companies = companies.filter(cities__name=city)
+
+        if faculty:
+            companies = companies.filter(companyinternshipreview__user__student__faculty__name=faculty)
+
+        return companies
 
     def find_companies_which_names_start_with(self, query=None):
         companies = self.get_companies_list()

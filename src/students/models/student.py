@@ -17,4 +17,4 @@ class Student(models.Model):
         db_table = 'student'
 
     def __unicode__(self):
-        return unicode('Student: ' + self.user)
+        return unicode('Student: ' + unicode(self.user))

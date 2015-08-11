@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.http import Http404
-
 
 from common.views.common_base_view import CommonBaseView
 
-class CompanyView(CommonBaseView):
 
+class CompanyView(CommonBaseView):
     template_name = 'companies/company.html'
 
     def get(self, request, company_id):

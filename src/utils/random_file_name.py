@@ -12,4 +12,4 @@ class RandomFileName(object):
 
     def __call__(self, _, filename):
         extension = os.path.splitext(filename)[1]
-        return os.path.join(self.path, '{}.{}'.format(uuid.uuid4(), extension))
+        return os.path.join(self.path, '{}{}'.format(uuid.uuid4(), extension))

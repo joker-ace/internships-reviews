@@ -22,7 +22,7 @@
     {% for company in companies %}
       <tr>
         <td class="text-center">
-          <a href="{%  url 'company_page' company.id %}"><img height="75" src="{{ company.logo_image.url }}" alt="{{ company.name }}"></a>
+          <a href="{%  url 'company_page' company.id %}"><img height="75" src="{% image_link company.logo_image %}" alt="{{ company.name }}"></a>
         </td>
         <td class="vertical-align text-center" style="font-size: 18px;">
           <a href="{%  url 'company_page' company.id %}">{{ company.name }}</a>
@@ -39,7 +39,7 @@
       </tr>
     {% empty %}
       <tr>
-        <td colspan="5" class="text-center"><h4>Sorry, no companies added yet</h4></td>
+        <td colspan="5" class="text-center"><h4>Sorry, no companies to view</h4></td>
       </tr>
     {% endfor %}
 

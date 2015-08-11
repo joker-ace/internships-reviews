@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib.auth import logout
 from common.views.common_base_view import CommonBaseView
 
