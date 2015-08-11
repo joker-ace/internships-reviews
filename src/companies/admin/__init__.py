@@ -12,7 +12,7 @@ class CompanyAdmin(admin.ModelAdmin):
         verbose_name = 'office'
 
     fieldsets = [
-        ('Company information', {'fields': ['name', 'logo_image']})
+        ('Company information', {'fields': ['name', 'logo_image', 'description']})
     ]
 
     inlines = (CompanyOfficesInline,)

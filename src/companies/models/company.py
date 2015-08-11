@@ -11,6 +11,7 @@ class Company(models.Model):
     logo_image = models.ImageField(
         upload_to=RandomFileName('companies'), null=True,
         default='/static/images/logo_default.png')
+    description = models.TextField(null=True, default=None)
 
     class Meta:
         db_table = 'company'
@@ -23,7 +24,8 @@ class Company(models.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'logo_image': self.logo_image
+            'logo_image': self.logo_image,
+            'description': self.description
         }
 
     def to_api_dict(self):
