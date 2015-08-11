@@ -34,22 +34,23 @@
                 <div class="learn-new" data-score="{{ company.learn_new_score }}"></div>
             </td>
         </tr>
-        {% if company.description %}
-            <tr>
-                <td colspan="5" class="text-justify">
-                    <p><span class="text-info text-uppercase start-line">Description:</span> {{ company.description }}</p>
-                    {% if not request.user.is_authenticated %}
-                        <div class="text-center">
+        <tr>
+            <td colspan="5" class="text-justify">
+                {% if company.description %}
+                    <p><span class="text-info text-uppercase start-line">Description:</span> {{ company.description }}
+                    </p>
+                {% endif %}
+                {% if not request.user.is_authenticated %}
+                    <div class="text-center">
                         <a href="{% url 'login_page' %}" class="link-btn">
                             <button class="btn btn-success">
                                 <span class="fa fa-user-plus">&nbsp;</span>I'd like to do an internship in this company
                             </button>
                         </a>
-                        </div>
-                    {% endif %}
-                </td>
-            </tr>
-        {% endif %}
+                    </div>
+                {% endif %}
+            </td>
+        </tr>
         <tr>
             <td colspan="5" class="text-center">Students reviews</td>
         </tr>
