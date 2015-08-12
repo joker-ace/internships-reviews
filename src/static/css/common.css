@@ -101,3 +101,11 @@ main {
 .link-btn:hover{
     text-decoration: none;
 }
+
+.jb-custom {
+    padding: 24px 30px;
+}
+
+.home-image img {
+    width: 100%;
+}

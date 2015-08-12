@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="jumbotron jb-custom">
+        <h1 class="text-center">Internships reviews</h1>
+        <div class="home-image">
+            <img class="img-responsive center-block" src="/static/images/home.jpg" />
+        </div>
+        <br/>
+
+        <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In accumsan erat vestibulum nulla vulputate ullamcorper. Nulla maximus tellus orci, et consectetur urna vehicula non. Cras mi odio, placerat quis quam sit amet, vulputate cursus magna. Morbi nec felis in ante auctor elementum vel iaculis arcu. Maecenas fringilla, risus ut volutpat pulvinar, lacus mi bibendum dui, dignissim sollicitudin tortor dolor sagittis sem. Ut luctus scelerisque ultricies. Etiam id tortor lorem. Ut sed lobortis dui. Curabitur at ante vel arcu viverra pharetra. Quisque nisl est, porttitor quis porta sed, mattis et tellus.</p>
+
+        <p class="text-right">
+            <a href="{% url 'companies_list_page' %}" class="btn btn-success btn-lg">
+                Check latest reviews of the top companies
+            </a>
+        </p>
+    </div>
+{% endblock %}
