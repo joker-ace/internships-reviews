@@ -66,5 +66,6 @@
   </div>
 {% endblock %}
 {% block on_load_js %}
+    {{ block.super }}
   {% js 'students/universities.js' %}
 {% endblock %}

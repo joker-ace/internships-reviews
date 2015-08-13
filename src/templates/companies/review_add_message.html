@@ -15,6 +15,7 @@
     </div>
   </div>
   {% block on_load_js %}
+      {{ block.super }}
     <script>
       $(document).ready(function () {
         var seconds = 4;

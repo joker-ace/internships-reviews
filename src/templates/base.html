@@ -2,77 +2,141 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head lang="en">
-  <meta charset="UTF-8"/>
-  <title>Internships Reviews - {% block title %}{% endblock %}</title>
-  {% block css %}
-    <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet"/>
-    <link href="{% static 'css/font-awesome.min.css' %}" type="text/css" rel="stylesheet"/>
-    <link href="{% static 'css/common.css' %}" type="text/css" rel="stylesheet"/>
-  {% endblock %}
-  {% block js %}
-    <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/common.js' %}"></script>
-  {% endblock %}
+    <meta charset="UTF-8"/>
+    <title>Internships Reviews - {% block title %}{% endblock %}</title>
+    {% block css %}
+        <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="{% static 'css/font-awesome.min.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="{% static 'css/common.css' %}" type="text/css" rel="stylesheet"/>
+    {% endblock %}
+    {% block js %}
+        <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/common.js' %}"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    {% endblock %}
 </head>
 <body>
 <div class="wrapper">
-  <header class="container">
-    {% block header %}
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-2">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'home_page' %}"><i class="fa fa-comments">&nbsp;</i>Internships Reviews</a>
-          </div>
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-              <form class="navbar-form navbar-left" role="search" action="{% url 'companies_list_page' %}">
-                  <div class="form-group">
-                      <input type="text" value="{{ request.GET.city }}" class="form-control" placeholder="Search by city" name="city">
-                  </div>
-                  <div class="form-group">
-                      <input type="text" value="{{ request.GET.faculty }}" class="form-control" placeholder="Search by faculty" name="faculty">
-                  </div>
-                  <button type="submit" class="btn btn-default">Search</button>
-              </form>
-            <ul class="nav navbar-nav navbar-right">
-            {% if request.user.is_authenticated %}
-                <li>
-                  <a href="{% url 'company_review_page' %}" class="btn btn-link"><span
-                      class="fa fa-plus">&nbsp;</span>Add Internship Review</a>
-                </li>
-                <li>
-                  <a href="#" class="btn btn-link"><span
-                      class="fa fa-user">&nbsp;</span>{{ request.user.first_name }} {{ request.user.last_name }}</a>
-                </li>
-                <li><a class="btn btn-link" href="{% url 'logout_page' %}">
-                  <i class="fa fa-sign-out">&nbsp;</i>Sign Out</a></li>
+    <header class="container">
+        {% block header %}
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{% url 'home_page' %}"><i class="fa fa-comments">&nbsp;</i>Internships
+                            Reviews</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                        <form class="navbar-form navbar-left" role="search" action="{% url 'companies_list_page' %}">
+                            <div class="form-group">
+                                <input type="text" value="{{ request.GET.city }}" class="form-control"
+                                       placeholder="Search by city" name="city">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" value="{{ request.GET.faculty }}" class="form-control"
+                                       placeholder="Search by faculty" name="faculty">
+                            </div>
+                            <button type="submit" class="btn btn-default">Search</button>
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if request.user.is_authenticated %}
+                                <li>
+                                    <a href="{% url 'company_review_page' %}" class="btn btn-link"><span
+                                            class="fa fa-plus">&nbsp;</span>Add Internship Review</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btn btn-link"><span
+                                            class="fa fa-user">&nbsp;</span>{{ request.user.first_name }} {{ request.user.last_name }}
+                                    </a>
+                                </li>
+                                <li><a class="btn btn-link" href="{% url 'logout_page' %}">
+                                    <i class="fa fa-sign-out">&nbsp;</i>Sign Out</a></li>
 
-            {% else %}
-                <li><a class="btn btn-link" href="{% url 'login_page' %}"><i class="fa fa-sign-in">&nbsp;</i>Sign In</a></li>
-                <li><a class="btn btn-link" href="{% url 'registration_page' %}"><i class="fa fa-user-plus">&nbsp;</i>Sign Up</a></li>
-            {% endif %}
-            </ul>
-          </div>
+                            {% else %}
+                                <li><a class="btn btn-link" href="{% url 'login_page' %}"><i class="fa fa-sign-in">
+                                    &nbsp;</i>Sign In</a></li>
+                                <li><a class="btn btn-link" href="{% url 'registration_page' %}"><i
+                                        class="fa fa-user-plus">&nbsp;</i>Sign Up</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        {% endblock %}
+    </header>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <div class="container">
+            <div class="text-center">2015 <i class="fa fa-copyright"></i></div>
         </div>
-      </nav>
-    {% endblock %}
-  </header>
-  <main class="container">
-    {% block content %}{% endblock %}
-  </main>
-  <footer>
-    <div class="container">
-      <div class="text-center">2015 <i class="fa fa-copyright"></i></div>
-    </div>
-  </footer>
+    </footer>
 </div>
-{% block on_load_js %}{% endblock %}
+{% block on_load_js %}
+    <script>
+        $(document).ready(function () {
+
+            $('nav input[name="city"]').autocomplete({
+                minLength: 1,
+                source: function (request, response) {
+                    $.ajax({
+                        url: "{% url 'api_autocomplete_city_name' %}",
+                        dataType: "json",
+                        data: {
+                            q: request.term
+                        },
+                        success: function (data) {
+                            response(data.items);
+                        }
+                    });
+                },
+                focus: function (event, ui) {
+                    $('nav input[name="city"]').val(ui.item.name);
+                    return false;
+                },
+                select: function (event, ui) {
+                    $('nav input[name="city"]').val(ui.item.name);
+                    return false;
+                }
+            }).autocomplete("instance")._renderItem = function (ul, city) {
+                return $('<li class="ap">').append("<p>" + city.name + ', ' + city.province + "</p>").appendTo(ul);
+            };
+
+            $('nav input[name="faculty"]').autocomplete({
+                minLength: 1,
+                source: function (request, response) {
+                    $.ajax({
+                        url: "{% url 'api_autocomplete_faculty_name' %}",
+                        dataType: "json",
+                        data: {
+                            q: request.term
+                        },
+                        success: function (data) {
+                            response(data.items);
+                        }
+                    });
+                },
+                focus: function (event, ui) {
+                    $('nav input[name="faculty"]').val(ui.item.name);
+                    return false;
+                },
+                select: function (event, ui) {
+                    $('nav input[name="faculty"]').val(ui.item.name);
+                    return false;
+                }
+            }).autocomplete("instance")._renderItem = function (ul, faculty) {
+                return $('<li class="ap">').append("<p>" + faculty.name + ', ' + faculty.university + "</p>").appendTo(ul);
+            };
+        })
+    </script>
+{% endblock %}
 </body>
 </html>

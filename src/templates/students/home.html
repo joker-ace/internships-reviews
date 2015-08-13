@@ -2,11 +2,6 @@
 
 {% block title %}Home{% endblock %}
 
-{% block js %}
-    {{ block.super }}
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-{% endblock %}
-
 {% block content %}
     <div class="jumbotron jb-custom">
         <h1 class="text-center">Internships reviews</h1>
@@ -43,6 +38,7 @@
 {% endblock %}
 
 {% block on_load_js %}
+            {{ block.super }}
     <script type="text/javascript">
         $('.jumbotron input[name="city"]').autocomplete({
             minLength: 1,
@@ -90,59 +86,6 @@
             },
             select: function (event, ui) {
                  $( '.jumbotron input[name="faculty"]' ).val( ui.item.name );
-                return false;
-            }
-        }).autocomplete("instance")._renderItem = function (ul, faculty) {
-            return $('<li class="ap">').append("<p>" + faculty.name + ', ' + faculty.university + "</p>").appendTo(ul);
-        };
-
-
-        $('nav input[name="city"]').autocomplete({
-            minLength: 1,
-            source: function (request, response) {
-                $.ajax({
-                    url: "{% url 'api_autocomplete_city_name' %}",
-                    dataType: "json",
-                    data: {
-                        q: request.term
-                    },
-                    success: function (data) {
-                        response(data.items);
-                    }
-                });
-            },
-            focus: function(event, ui) {
-                $( 'nav input[name="city"]' ).val( ui.item.name );
-                return false;
-            },
-            select: function (event, ui) {
-                 $( 'nav input[name="city"]' ).val( ui.item.name );
-                return false;
-            }
-        }).autocomplete("instance")._renderItem = function (ul, city) {
-            return $('<li class="ap">').append("<p>" + city.name + ', ' + city.province + "</p>").appendTo(ul);
-        };
-
-        $('nav input[name="faculty"]').autocomplete({
-            minLength: 1,
-            source: function (request, response) {
-                $.ajax({
-                    url: "{% url 'api_autocomplete_faculty_name' %}",
-                    dataType: "json",
-                    data: {
-                        q: request.term
-                    },
-                    success: function (data) {
-                        response(data.items);
-                    }
-                });
-            },
-            focus: function(event, ui) {
-                $( 'nav input[name="faculty"]' ).val( ui.item.name );
-                return false;
-            },
-            select: function (event, ui) {
-                 $( 'nav input[name="faculty"]' ).val( ui.item.name );
                 return false;
             }
         }).autocomplete("instance")._renderItem = function (ul, faculty) {
