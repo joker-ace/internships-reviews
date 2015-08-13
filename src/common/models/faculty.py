@@ -20,3 +20,9 @@ class Faculty(models.Model):
 
     def __unicode__(self):
         return self.name + ', ' + self.university.name
+
+    def to_dict(self):
+        return {
+            'name': self.name,
+            'university': self.university.name
+        }

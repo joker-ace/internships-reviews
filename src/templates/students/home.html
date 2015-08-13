@@ -2,15 +2,37 @@
 
 {% block title %}Home{% endblock %}
 
+{% block js %}
+    {{ block.super }}
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+{% endblock %}
+
 {% block content %}
     <div class="jumbotron jb-custom">
         <h1 class="text-center">Internships reviews</h1>
+
         <div class="home-image">
-            <img class="img-responsive center-block" src="/static/images/home.jpg" />
+            <img class="img-responsive center-block" src="/static/images/home.jpg"/>
         </div>
         <br/>
 
-        <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In accumsan erat vestibulum nulla vulputate ullamcorper. Nulla maximus tellus orci, et consectetur urna vehicula non. Cras mi odio, placerat quis quam sit amet, vulputate cursus magna. Morbi nec felis in ante auctor elementum vel iaculis arcu. Maecenas fringilla, risus ut volutpat pulvinar, lacus mi bibendum dui, dignissim sollicitudin tortor dolor sagittis sem. Ut luctus scelerisque ultricies. Etiam id tortor lorem. Ut sed lobortis dui. Curabitur at ante vel arcu viverra pharetra. Quisque nisl est, porttitor quis porta sed, mattis et tellus.</p>
+        <form class="navbar-form navbar-left" role="search" action="{% url 'companies_list_page' %}">
+            <div class="form-group">
+                <input type="text" value="{{ request.GET.city }}" class="form-control" placeholder="Search by city"
+                       name="city" id="city">
+            </div>
+            <div class="form-group">
+                <input type="text" value="{{ request.GET.faculty }}" class="form-control"
+                       placeholder="Search by faculty" name="faculty">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+        </form>
+        <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In accumsan erat vestibulum
+            nulla vulputate ullamcorper. Nulla maximus tellus orci, et consectetur urna vehicula non. Cras mi odio,
+            placerat quis quam sit amet, vulputate cursus magna. Morbi nec felis in ante auctor elementum vel iaculis
+            arcu. Maecenas fringilla, risus ut volutpat pulvinar, lacus mi bibendum dui, dignissim sollicitudin tortor
+            dolor sagittis sem. Ut luctus scelerisque ultricies. Etiam id tortor lorem. Ut sed lobortis dui. Curabitur
+            at ante vel arcu viverra pharetra. Quisque nisl est, porttitor quis porta sed, mattis et tellus.</p>
 
         <p class="text-right">
             <a href="{% url 'companies_list_page' %}" class="btn btn-success btn-lg">
@@ -18,4 +40,114 @@
             </a>
         </p>
     </div>
+{% endblock %}
+
+{% block on_load_js %}
+    <script type="text/javascript">
+        $('.jumbotron input[name="city"]').autocomplete({
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: "{% url 'api_autocomplete_city_name' %}",
+                    dataType: "json",
+                    data: {
+                        q: request.term
+                    },
+                    success: function (data) {
+                        response(data.items);
+                    }
+                });
+            },
+            focus: function(event, ui) {
+                $( '.jumbotron input[name="city"]' ).val( ui.item.name );
+                return false;
+            },
+            select: function (event, ui) {
+                 $( '.jumbotron input[name="city"]' ).val( ui.item.name );
+                return false;
+            }
+        }).autocomplete("instance")._renderItem = function (ul, city) {
+            return $('<li class="ap">').append("<p>" + city.name + ', ' + city.province + "</p>").appendTo(ul);
+        };
+
+        $('.jumbotron input[name="faculty"]').autocomplete({
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: "{% url 'api_autocomplete_faculty_name' %}",
+                    dataType: "json",
+                    data: {
+                        q: request.term
+                    },
+                    success: function (data) {
+                        response(data.items);
+                    }
+                });
+            },
+            focus: function(event, ui) {
+                $( '.jumbotron input[name="faculty"]' ).val( ui.item.name );
+                return false;
+            },
+            select: function (event, ui) {
+                 $( '.jumbotron input[name="faculty"]' ).val( ui.item.name );
+                return false;
+            }
+        }).autocomplete("instance")._renderItem = function (ul, faculty) {
+            return $('<li class="ap">').append("<p>" + faculty.name + ', ' + faculty.university + "</p>").appendTo(ul);
+        };
+
+
+        $('nav input[name="city"]').autocomplete({
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: "{% url 'api_autocomplete_city_name' %}",
+                    dataType: "json",
+                    data: {
+                        q: request.term
+                    },
+                    success: function (data) {
+                        response(data.items);
+                    }
+                });
+            },
+            focus: function(event, ui) {
+                $( 'nav input[name="city"]' ).val( ui.item.name );
+                return false;
+            },
+            select: function (event, ui) {
+                 $( 'nav input[name="city"]' ).val( ui.item.name );
+                return false;
+            }
+        }).autocomplete("instance")._renderItem = function (ul, city) {
+            return $('<li class="ap">').append("<p>" + city.name + ', ' + city.province + "</p>").appendTo(ul);
+        };
+
+        $('nav input[name="faculty"]').autocomplete({
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: "{% url 'api_autocomplete_faculty_name' %}",
+                    dataType: "json",
+                    data: {
+                        q: request.term
+                    },
+                    success: function (data) {
+                        response(data.items);
+                    }
+                });
+            },
+            focus: function(event, ui) {
+                $( 'nav input[name="faculty"]' ).val( ui.item.name );
+                return false;
+            },
+            select: function (event, ui) {
+                 $( 'nav input[name="faculty"]' ).val( ui.item.name );
+                return false;
+            }
+        }).autocomplete("instance")._renderItem = function (ul, faculty) {
+            return $('<li class="ap">').append("<p>" + faculty.name + ', ' + faculty.university + "</p>").appendTo(ul);
+        };
+
+    </script>
 {% endblock %}

@@ -36,6 +36,9 @@ class CommonDataRepository(object):
     def get_cities_list(self):
         return City.objects.all()
 
+    def find_faculties_which_names_starts_with(self, query):
+        return Faculty.objects.filter(name__istartswith=query)
+
     def find_cities_which_names_start_with(self, query, province=None):
         cities = self.get_cities_list().filter(name__istartswith=query)
         if province:
